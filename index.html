@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qualiteq × Wolfpack Digital - EV Charging Validation App - Scope Alignment</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#101014;
+    --paper:#ffffff;
+    --mist:#f5f5f8;
+    --line:#e6e6ee;
+    --pink:#ff2d73;
+    --violet:#5b5bd6;
+    --teal:#12b795;
+    --amber:#e59a0c;
+    --muted:#6b6b78;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    line-height:1.6;
+    font-size:16px;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--pink);font-weight:500;
+  }
+  h1,h2,h3{font-family:'Sora',sans-serif;line-height:1.15;letter-spacing:-.02em}
+  a{color:var(--violet)}
+
+  /* ---------- header ---------- */
+  header{
+    border-bottom:1px solid var(--line);
+    padding:22px 0;
+    position:sticky;top:0;background:rgba(255,255,255,.92);
+    backdrop-filter:blur(8px);z-index:50;
+  }
+  .header-row{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  .brand{font-family:'Sora',sans-serif;font-weight:800;font-size:17px}
+  .brand em{font-style:normal;color:var(--pink)}
+  .header-meta{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted)}
+
+  /* ---------- hero ---------- */
+  .hero{padding:72px 0 40px}
+  .hero h1{font-size:clamp(30px,5vw,52px);font-weight:800;max-width:19ch;margin:14px 0 18px}
+  .hero h1 .accent{color:var(--pink)}
+  .hero p.lede{max-width:58ch;color:var(--muted);font-size:17px}
+  .chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+  .chip{
+    font-family:'IBM Plex Mono',monospace;font-size:12.5px;
+    border:1.5px solid var(--ink);border-radius:999px;
+    padding:7px 14px;font-weight:500;background:var(--paper);
+  }
+  .chip strong{color:var(--pink);font-weight:500}
+
+  /* ---------- loop rail (signature) ---------- */
+  .loop-section{padding:44px 0 56px;border-top:1px solid var(--line)}
+  .section-head{display:flex;align-items:baseline;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:26px}
+  .section-head h2{font-size:clamp(22px,3vw,30px);font-weight:700;margin-top:8px}
+  .section-head .note{font-size:14px;color:var(--muted);max-width:38ch}
+
+  .rail{
+    position:relative;
+    display:grid;grid-template-columns:repeat(9,1fr);gap:8px;
+    padding-top:26px;
+  }
+  .rail::before{
+    content:"";position:absolute;top:12px;left:4%;right:4%;height:4px;border-radius:4px;
+    background:var(--line);
+  }
+  .rail::after{
+    content:"";position:absolute;top:12px;left:4%;height:4px;border-radius:4px;
+    background:linear-gradient(90deg,var(--pink),var(--violet));
+    width:0;animation:charge 2.4s .3s ease-out forwards;
+  }
+  @keyframes charge{to{width:92%}}
+  @media (prefers-reduced-motion: reduce){
+    .rail::after{animation:none;width:92%}
+  }
+  .stop{position:relative;text-align:center}
+  .stop::before{
+    content:"";position:absolute;top:-20px;left:50%;transform:translateX(-50%);
+    width:12px;height:12px;border-radius:50%;
+    background:var(--paper);border:3px solid var(--ink);z-index:2;
+  }
+  .stop:first-child::before{border-color:var(--pink)}
+  .stop:last-child::before{border-color:var(--violet)}
+  .stop span{
+    display:block;font-family:'IBM Plex Mono',monospace;
+    font-size:11px;line-height:1.35;color:var(--ink);padding-top:8px;
+  }
+  @media(max-width:760px){
+    .rail{grid-template-columns:repeat(3,1fr);row-gap:34px}
+    .rail::before,.rail::after{display:none}
+    .stop::before{top:-16px}
+  }
+  .rail-caption{
+    margin-top:26px;font-size:14px;color:var(--muted);
+    border-left:3px solid var(--pink);padding-left:14px;max-width:70ch;
+  }
+
+  /* ---------- scope columns ---------- */
+  .scope{padding:52px 0;border-top:1px solid var(--line)}
+  .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;margin-top:8px}
+  .card{
+    border:1px solid var(--line);border-radius:14px;padding:20px 20px 18px;
+    background:var(--paper);position:relative;
+  }
+  .card .tag{
+    font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;
+    text-transform:uppercase;font-weight:500;
+    display:inline-block;border-radius:5px;padding:3px 8px;margin-bottom:12px;
+  }
+  .tag-must{background:#ffe6ef;color:var(--pink)}
+  .tag-could{background:#fdf1d8;color:var(--amber)}
+  .tag-wont{background:var(--mist);color:var(--muted)}
+  .card h3{font-size:16.5px;font-weight:600;margin-bottom:7px}
+  .card p{font-size:14px;color:var(--muted)}
+  .card .screens{
+    margin-top:12px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--ink);
+    background:var(--mist);border-radius:7px;padding:6px 10px;display:inline-block;
+  }
+  .scope-note{
+    margin-top:22px;background:var(--mist);border-radius:12px;padding:18px 22px;
+    font-size:14.5px;max-width:100%;
+  }
+  .scope-note strong{font-weight:600}
+
+  .wont-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;margin-top:8px}
+  .wont-item{
+    border:1px dashed var(--line);border-radius:10px;padding:13px 16px;
+    font-size:13.5px;color:var(--muted);
+  }
+  .wont-item b{color:var(--ink);font-weight:600;display:block;margin-bottom:2px;font-size:14px}
+
+  /* ---------- decisions ---------- */
+  .decisions{padding:52px 0;border-top:1px solid var(--line)}
+  .q{
+    display:grid;grid-template-columns:56px 1fr;gap:18px;
+    padding:24px 0;border-bottom:1px solid var(--line);
+  }
+  .q:last-of-type{border-bottom:none}
+  .q-num{
+    font-family:'Sora',sans-serif;font-weight:800;font-size:26px;color:var(--pink);
+    line-height:1;padding-top:2px;
+  }
+  .q h3{font-size:17px;font-weight:600;margin-bottom:6px}
+  .q p{font-size:14.5px;color:var(--muted);max-width:72ch}
+  .q .options{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+  .opt{
+    font-size:13px;border:1.5px solid var(--line);border-radius:999px;
+    padding:5px 13px;color:var(--ink);background:var(--paper);
+    cursor:pointer;transition:border-color .15s,background .15s;
+    font-family:'Inter',sans-serif;
+  }
+  .opt:hover{border-color:var(--pink)}
+  .opt.selected{border-color:var(--pink);background:#ffe6ef;font-weight:600}
+  .opt:focus-visible{outline:2px solid var(--violet);outline-offset:2px}
+  @media(max-width:560px){.q{grid-template-columns:38px 1fr;gap:12px}.q-num{font-size:20px}}
+
+  /* ---------- SOW alignment ---------- */
+  .part-label{
+    font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--paper);background:var(--ink);
+    display:inline-block;border-radius:6px;padding:5px 12px;font-weight:500;margin-bottom:14px;
+  }
+  .sow{padding:52px 0;border-top:3px solid var(--ink)}
+  .tbl-scroll{overflow-x:auto;margin-top:8px;border:1px solid var(--line);border-radius:14px}
+  table{border-collapse:collapse;width:100%;min-width:640px;font-size:13.5px}
+  th,td{padding:12px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+  thead th{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;
+    text-transform:uppercase;font-weight:500;color:var(--muted);background:var(--mist);
+  }
+  tbody tr:last-child td{border-bottom:none}
+  td.own-v{color:var(--pink);font-weight:600}
+  td.own-q{color:var(--violet);font-weight:600}
+  td.own-opt{color:var(--amber);font-weight:600}
+  .legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:12px;font-size:12.5px;color:var(--muted)}
+  .legend span b{font-weight:600}
+  .legend .l-v b{color:var(--pink)}
+  .legend .l-q b{color:var(--violet)}
+  .legend .l-o b{color:var(--amber)}
+  .div-tbl td:first-child{font-weight:600;width:24%}
+  .div-tbl td:nth-child(2){color:var(--muted)}
+  .bridge{
+    display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:stretch;margin-top:8px;
+  }
+  @media(max-width:700px){.bridge{grid-template-columns:1fr}}
+  .track{
+    border:1px solid var(--line);border-radius:14px;padding:20px;
+  }
+  .track h3{font-size:15.5px;font-weight:700;margin-bottom:6px}
+  .track p{font-size:13.5px;color:var(--muted)}
+  .track .t-tag{
+    font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+    display:inline-block;border-radius:5px;padding:3px 8px;margin-bottom:10px;font-weight:500;
+  }
+  .t1 .t-tag{background:#ffe6ef;color:var(--pink)}
+  .t2 .t-tag{background:#e9e9fb;color:var(--violet)}
+  .bridge-arrow{
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Sora',sans-serif;font-weight:800;font-size:22px;color:var(--muted);
+  }
+  @media(max-width:700px){.bridge-arrow{transform:rotate(90deg)}}
+
+  /* ---------- dependencies ---------- */
+  .deps{padding:52px 0;border-top:1px solid var(--line)}
+  .dep-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin-top:8px}
+  .dep{
+    border:1px solid var(--line);border-radius:12px;padding:16px 18px;font-size:14px;
+  }
+  .dep .when{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--teal);font-weight:500;display:block;margin-bottom:6px;
+  }
+  .dep b{font-weight:600}
+  .dep p{color:var(--muted);font-size:13px;margin-top:3px}
+
+  /* ---------- timeline ---------- */
+  .timeline{padding:52px 0;border-top:1px solid var(--line)}
+  .weeks{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
+  @media(max-width:700px){.weeks{grid-template-columns:1fr}}
+  .week{
+    border:1px solid var(--line);border-radius:14px;padding:20px;
+    border-top:4px solid var(--pink);
+  }
+  .week:nth-child(2){border-top-color:var(--violet)}
+  .week:nth-child(3){border-top-color:var(--teal)}
+  .week h3{font-size:15px;font-weight:700;margin-bottom:10px}
+  .week ul{list-style:none}
+  .week li{
+    font-size:13.5px;color:var(--muted);padding:5px 0 5px 18px;position:relative;
+  }
+  .week li::before{
+    content:"";position:absolute;left:0;top:12px;width:7px;height:7px;border-radius:50%;
+    background:var(--line);
+  }
+
+  /* ---------- next steps / footer ---------- */
+  .next{
+    margin:60px 0 0;padding:44px 0 56px;background:var(--ink);color:var(--paper);
+  }
+  .next .eyebrow{color:var(--pink)}
+  .next h2{font-size:clamp(22px,3vw,30px);font-weight:700;margin:10px 0 22px}
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+  .step{
+    background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);
+    border-radius:12px;padding:18px;
+  }
+  .step .n{
+    font-family:'Sora',sans-serif;font-weight:800;color:var(--pink);font-size:20px;
+    display:block;margin-bottom:8px;
+  }
+  .step p{font-size:14px;color:rgba(255,255,255,.82)}
+  .footer-line{
+    margin-top:40px;padding-top:22px;border-top:1px solid rgba(255,255,255,.14);
+    font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:rgba(255,255,255,.55);
+    display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap header-row">
+    <div class="brand">Wolfpack <em>Digital</em> × Qualiteq</div>
+    <div class="header-meta">Clarification call · 16 July 2026 · Prepared by Tudor Cutus</div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow">EV Charging Validation App · Tanzania</div>
+    <h1>One page to confirm the scope <span class="accent">together</span>.</h1>
+    <p class="lede">Two things to align on today. Part 1: the validation prototype under your AI MVP Pro package - what it covers, what sits alongside it as add-ons, and seven quick decisions. Part 2: the Phase 1 SOW we received from Innovatics Partners - how it relates to the prototype, and what we need to confirm to structure our proposal around Options A, B and C.</p>
+    <div class="chips">
+      <div class="chip">Package <strong>AI MVP Pro</strong></div>
+      <div class="chip">Budget <strong>€15,000</strong></div>
+      <div class="chip">Timeline <strong>3 weeks</strong></div>
+      <div class="chip">Payments <strong>M-Pesa (Vodacom TZ)</strong></div>
+      <div class="chip">Distribution <strong>TestFlight / Play Internal</strong></div>
+    </div>
+  </div>
+</section>
+
+<section class="loop-section">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">What this prototype proves</div>
+        <h2>The full charging loop, end to end</h2>
+      </div>
+      <div class="note">Internal testers complete every step unaided - enough signal for your end-client to decide on productisation.</div>
+    </div>
+    <div class="rail" aria-label="Nine app screens in sequence">
+      <div class="stop"><span>Welcome /<br>Sign-in</span></div>
+      <div class="stop"><span>OTP<br>verify</span></div>
+      <div class="stop"><span>Map<br>(home)</span></div>
+      <div class="stop"><span>Station<br>detail</span></div>
+      <div class="stop"><span>Start charge<br>(QR / PIN)</span></div>
+      <div class="stop"><span>Active<br>session</span></div>
+      <div class="stop"><span>Payment<br>(modal)</span></div>
+      <div class="stop"><span>Receipt</span></div>
+      <div class="stop"><span>History</span></div>
+    </div>
+    <p class="rail-caption">9 screens, within the package's 6-10 screen range. Charging hardware is simulated server-side and payments run on the Vodacom sandbox - no real money moves and no physical chargers are needed for this phase, which is exactly what keeps it inside the package budget and the 3-week timeline.</p>
+  </div>
+</section>
+
+<section class="scope">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Included in the €15k package</div>
+        <h2>Six must-have features, at the package cap</h2>
+      </div>
+      <div class="note">The package covers 4-6 features. Your validation loop fits at exactly 6.</div>
+    </div>
+    <div class="cards">
+      <div class="card"><span class="tag tag-must">M1 · Must</span><h3>Phone-number authentication</h3><p>Sign up and log in with phone + OTP (SMS), +255 prefix, minimal profile, session persistence, invalid/expired code handling.</p><div class="screens">Welcome / Sign-in · OTP verify</div></div>
+      <div class="card"><span class="tag tag-must">M2 · Must</span><h3>Live station map & discovery</h3><p>2-3 seeded stations with live availability, connector types and tariff. Pin colour reflects live status. Directions hand off to native maps.</p><div class="screens">Map (home) · Station detail</div></div>
+      <div class="card"><span class="tag tag-must">M3 · Must</span><h3>Charging session (simulated)</h3><p>Start via QR scan or PIN. Live progress with simulated kWh and running cost. Consistent state for all testers, server-side.</p><div class="screens">Start charge · Active session</div></div>
+      <div class="card"><span class="tag tag-must">M4 · Must</span><h3>M-Pesa payment (sandbox)</h3><p>Tariff shown upfront. Payment on session end via the Vodacom TZ sandbox, with pending, paid and failed-retry states all designed.</p><div class="screens">Payment (modal)</div></div>
+      <div class="card"><span class="tag tag-must">M5 · Must</span><h3>Receipts & session history</h3><p>Receipt with station, duration, kWh, amount and M-Pesa reference. History list with status chips, persisted per user.</p><div class="screens">Receipt · History</div></div>
+      <div class="card"><span class="tag tag-must">M6 · Must</span><h3>Session push notifications</h3><p>Charge started, charge complete and payment result, delivered on TestFlight and Play Internal builds via FCM + APNs.</p><div class="screens">System-level</div></div>
+    </div>
+    <div class="scope-note">Also bundled in the package: <strong>Discovery workshop</strong>, <strong>database + backend logic</strong>, <strong>AI-native build workflow</strong> and <strong>basic analytics</strong>. Store submission is included in the package but deferred by agreement - a public release only makes sense once the simulated integrations are replaced with real ones.</div>
+  </div>
+</section>
+
+<section class="scope">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Optional add-ons</div>
+        <h2>Priced individually, toggled in the interactive estimate</h2>
+      </div>
+      <div class="note">The €15,000 package covers the six must-have features regardless of what you choose here. Each add-on is priced individually and adds to that total - you and your manager can toggle them in the interactive estimate and see the impact on the overall budget in real time.</div>
+    </div>
+    <div class="cards">
+      <div class="card"><span class="tag tag-could">C1 · Could</span><h3>Minimal admin console</h3><p>Web dashboard to view sessions and revenue, toggle station availability, edit tariffs and add stations.</p></div>
+      <div class="card"><span class="tag tag-could">C2 · Could</span><h3>Production M-Pesa integration</h3><p>Real Vodacom OpenAPI: merchant onboarding, production credentials, reconciliation and edge handling beyond the sandbox.</p></div>
+      <div class="card"><span class="tag tag-could">C3 · Could</span><h3>Booking / slot reservation</h3><p>Reserve a charger time slot to skip the queue, with a per-station availability calendar.</p></div>
+      <div class="card"><span class="tag tag-could">C4 · Could</span><h3>White-label preparation</h3><p>Theming and config layer, branding placeholders in code, build variants per brand - for resale in other countries.</p></div>
+      <div class="card"><span class="tag tag-could">C5 · Could</span><h3>Public store submission</h3><p>App Store and Play Store listings, screenshots, metadata and review cycles. Meaningful once C2 and real charger integration replace the mocks.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="scope">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Out of scope this phase</div>
+        <h2>Deferred by design, not forgotten</h2>
+      </div>
+      <div class="note">The architecture keeps the door open for all of these - the payment layer and the session engine both sit behind interfaces a real integration can later replace.</div>
+    </div>
+    <div class="wont-list">
+      <div class="wont-item"><b>Real charger hardware</b>OCPP / vendor APIs - charging is fully simulated server-side this phase.</div>
+      <div class="wont-item"><b>Production hardening</b>Load scaling, SLAs, pen-testing, multi-environment setup.</div>
+      <div class="wont-item"><b>Localisation</b>English only, with TZS for display.</div>
+      <div class="wont-item"><b>Extra payment methods</b>Beyond M-Pesa.</div>
+      <div class="wont-item"><b>Routing, filters, loyalty</b>EV routing, advanced filters, referrals, ratings and reviews.</div>
+      <div class="wont-item"><b>Operator mobile app</b>Secondary operator and admin users are out of scope this phase.</div>
+    </div>
+  </div>
+</section>
+
+<section class="decisions">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="part-label">Part 1 · Validation prototype</div>
+        <div class="eyebrow">Today's call</div>
+        <h2>Six decisions to confirm</h2>
+      </div>
+      <div class="note">Each one is quick, and each one directly shapes design, the seed data or the week-1 plan. Tap an option to mark where we land.</div>
+    </div>
+
+    <div class="q">
+      <div class="q-num">1</div>
+      <div>
+        <h3>Payment moment: pay after the session, or hold funds before it?</h3>
+        <p>The current design charges M-Pesa when the session ends. Real EV flows often place a hold before energy is delivered and capture the final amount afterwards. For validation, either works - but it changes the payment sequence your testers experience and the states we design. If a hold is preferred, a deposit or wallet-style pre-charge may be the practical pattern on M-Pesa.</p>
+        <div class="options"><button class="opt">Pay after session (current design)</button><button class="opt">Deposit / pre-charge upfront</button><button class="opt">Decide in Discovery</button></div>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="q-num">2</div>
+      <div>
+        <h3>QR codes: printed at the stations, or shown in-app for the test?</h3>
+        <p>Affects the scan flow and what we need from your side. If the client prints codes at the physical stations, we generate them; if the test is fully off-site, an in-app simulated code is simpler.</p>
+        <div class="options"><button class="opt">Printed at stations</button><button class="opt">Simulated in-app</button><button class="opt">Both</button></div>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="q-num">3</div>
+      <div>
+        <h3>Vodacom sandbox access - who is our contact?</h3>
+        <p>Sandbox credentials (or a merchant contact at Vodacom) are the single most timeline-sensitive dependency: we need them in week 1. We would also confirm together what the sandbox supports, since that ties into decision 1.</p>
+        <div class="options"><button class="opt">Qualiteq provides contact</button><button class="opt">End-client provides</button><button class="opt">Wolfpack to initiate</button></div>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="q-num">4</div>
+      <div>
+        <h3>Connector types and tariff model for the seed data</h3>
+        <p>Which charger types (AC / DC) and which pricing model (per-kWh vs per-minute) should the 2-3 seeded stations reflect? Matching the end-client's real intended mix makes the validation more convincing.</p>
+        <div class="options"><button class="opt">Per-kWh</button><button class="opt">Per-minute</button><button class="opt">Mixed - mirror real plan</button></div>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="q-num">5</div>
+      <div>
+        <h3>Branding for the test build</h3>
+        <p>A neutral test brand, or the end-client's brand? This affects the design week and, later, store metadata. If white-label resale (C4) is on your roadmap, a neutral base with theming placeholders is the natural starting point.</p>
+        <div class="options"><button class="opt">Neutral test brand</button><button class="opt">End-client brand</button><button class="opt">Neutral + theming placeholders</button></div>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="q-num">6</div>
+      <div>
+        <h3>Which charger hardware is the end-client planning to deploy?</h3>
+        <p>Nothing to build this phase - but knowing the vendor or shortlist tells us which protocol (OCPP version or a vendor API) the simulated engine should mirror, so the later real integration is a bounded swap instead of a rebuild.</p>
+        <div class="options"><button class="opt">Shortlist exists - will share</button><button class="opt">Not decided yet</button></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="sow">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="part-label">Part 2 · Phase 1 SOW</div>
+        <div class="eyebrow">EV Charging Network · 6-station pilot · Dar es Salaam</div>
+        <h2>How the SOW relates to the prototype</h2>
+      </div>
+      <div class="note">The SOW from Innovatics Partners describes the production pilot. The prototype above validates the concept. We want to confirm how the two connect, so our proposal lands exactly where it is useful to you.</div>
+    </div>
+
+    <div class="bridge">
+      <div class="track t1">
+        <span class="t-tag">Track 1 · Now</span>
+        <h3>Validation prototype</h3>
+        <p>€15k package · 3 weeks · mobile app · simulated chargers · M-Pesa sandbox · internal testers. Proves the concept before bigger commitments.</p>
+      </div>
+      <div class="bridge-arrow">→</div>
+      <div class="track t2">
+        <span class="t-tag">Track 2 · SOW proposal</span>
+        <h3>Phase 1 production pilot</h3>
+        <p>6 real stations · web + mobile apps · operator console · real OCPP hardware · multi-channel payments with pre-authorisation · UAT, go-live and 12-month SLA. Quoted per Options A / B / C.</p>
+      </div>
+    </div>
+    <p class="rail-caption" style="margin-top:22px">The first thing to confirm together: is the prototype a stepping stone inside the SOW journey, or a separate internal Qualiteq deliverable? The answer changes how we architect the prototype (for example, building it API-first against the SOW's extensibility rules so nothing is thrown away).</p>
+  </div>
+</section>
+
+<section class="sow" style="border-top:1px solid var(--line)">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Options A / B / C</div>
+        <h2>Who builds what, per option</h2>
+      </div>
+      <div class="note">As defined in the SOW. We will quote Option A as the baseline and can itemise B and C so each component compares like-for-like.</div>
+    </div>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>Component</th><th>Option A · Core</th><th>Option B · + Pricing</th><th>Option C · Full stack</th></tr></thead>
+        <tbody>
+          <tr><td>Customer app UI (mobile + web)</td><td class="own-v">Wolfpack</td><td class="own-v">Wolfpack</td><td class="own-v">Wolfpack</td></tr>
+          <tr><td>Operator / admin console UI</td><td class="own-v">Wolfpack</td><td class="own-v">Wolfpack</td><td class="own-v">Wolfpack</td></tr>
+          <tr><td>Payment checkout UI / SDK</td><td class="own-v">Wolfpack</td><td class="own-v">Wolfpack</td><td class="own-v">Wolfpack</td></tr>
+          <tr><td>Pricing & product engine</td><td class="own-q">Qualiteq</td><td class="own-v">Wolfpack</td><td class="own-v">Wolfpack</td></tr>
+          <tr><td>OCPP / charger middleware</td><td class="own-q">Qualiteq</td><td class="own-q">Qualiteq</td><td class="own-opt">Wolfpack (optional)</td></tr>
+          <tr><td>Payment settlement & reconciliation</td><td class="own-q">Qualiteq</td><td class="own-q">Qualiteq</td><td class="own-opt">Wolfpack (optional)</td></tr>
+          <tr><td>Identity & wallet service</td><td class="own-q">Qualiteq</td><td class="own-q">Qualiteq</td><td class="own-q">Qualiteq</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="legend">
+      <span class="l-v"><b>Wolfpack</b> · vendor-built</span>
+      <span class="l-q"><b>Qualiteq</b> · partner-owned</span>
+      <span class="l-o"><b>Optional</b> · vendor upsell under C</span>
+    </div>
+  </div>
+</section>
+
+<section class="sow" style="border-top:1px solid var(--line)">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Prototype vs SOW</div>
+        <h2>What changes between the two tracks</h2>
+      </div>
+      <div class="note">Nothing here is a surprise - the SOW is simply a different phase. Listing it keeps expectations clean on both sides.</div>
+    </div>
+    <div class="tbl-scroll">
+      <table class="div-tbl">
+        <thead><tr><th>Area</th><th>Validation prototype (Track 1)</th><th>Phase 1 SOW (Track 2)</th></tr></thead>
+        <tbody>
+          <tr><td>Platforms</td><td>Mobile app only</td><td>Mobile app + responsive customer web app, one shared API contract</td></tr>
+          <tr><td>Chargers</td><td>Fully simulated server-side</td><td>Real hardware via OCPP 1.6J - remote start/stop, reset, unlock, live meter values</td></tr>
+          <tr><td>Payments</td><td>Vodacom M-Pesa sandbox</td><td>M-Pesa, Tigo Pesa, Airtel Money + cards via a local aggregator, with pre-authorisation and capture</td></tr>
+          <tr><td>Operator console</td><td>Optional minimal admin (C1)</td><td>Must-have: live fleet dashboard, remote control and reset, void/refund, reporting, role-based access, maintenance log</td></tr>
+          <tr><td>Pricing</td><td>Tariffs in seed data</td><td>Full pricing & product engine: products, time-tiered rates, coupon codes, changes without an app release</td></tr>
+          <tr><td>Identity</td><td>App-local phone + OTP</td><td>Qualiteq-owned identity & wallet service, shared across future modules</td></tr>
+          <tr><td>Quality bar</td><td>Single staging env, internal testers</td><td>99.5% uptime, 10s status refresh, PCI-DSS via aggregator, scale-ready to 50 stations, TZ data residency</td></tr>
+          <tr><td>Aftercare</td><td>Post-delivery bug fixing</td><td>UAT support, go-live plan for 6 stations, 12-month SLA with defined response times</td></tr>
+          <tr><td>Timeline</td><td>3 weeks</td><td>Within the client's 24-week programme window</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="decisions" style="padding-top:44px">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">SOW proposal</div>
+        <h2>Seven things to confirm for the proposal</h2>
+      </div>
+      <div class="note">These let us structure the proposal precisely - which options we quote, what we assume, and what we flag as dependencies.</div>
+    </div>
+
+    <div class="q">
+      <div class="q-num">7</div>
+      <div>
+        <h3>How do the two tracks connect?</h3>
+        <p>Is the validation prototype a first step inside the SOW journey (in which case we architect it API-first, against the SOW's extensibility rules, so it carries forward) - or a separate internal deliverable for Qualiteq, independent of the vendor selection?</p>
+        <div class="options"><button class="opt">Stepping stone into Phase 1</button><button class="opt">Separate internal deliverable</button><button class="opt">Depends on vendor selection</button></div>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="q-num">8</div>
+      <div>
+        <h3>Which options should we quote?</h3>
+        <p>Option A is the required baseline. B and C are invited but optional, with components itemised so each compares against Qualiteq's own estimate. Which would be genuinely useful to see from us?</p>
+        <div class="options"><button class="opt">A only</button><button class="opt">A + B</button><button class="opt">A + B + C</button></div>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="q-num">9</div>
+      <div>
+        <h3>How is Qualiteq set up on the middleware components?</h3>
+        <p>Under A and B, our front end consumes your OCPP middleware, pricing engine and settlement APIs. Knowing how your engineering team is organised on these - in-house build, partner, or still being decided - tells us where our proposal adds the most value and what assumptions to write down.</p>
+        <div class="options"><button class="opt">In-house team building them</button><button class="opt">Partner / subcontracted</button><button class="opt">Still being decided</button></div>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="q-num">10</div>
+      <div>
+        <h3>Identity & wallet: what exists today?</h3>
+        <p>The SOW keeps this service with Qualiteq under every option, as the foundation for future modules. Is there an existing service (with an API contract we can design against), or is it greenfield? And should the validation prototype already consume it, or use its own throwaway auth?</p>
+        <div class="options"><button class="opt">Exists - contract available</button><button class="opt">In development</button><button class="opt">Greenfield</button></div>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="q-num">11</div>
+      <div>
+        <h3>API contracts and sandbox: when can they be published?</h3>
+        <p>The SOW requires whoever owns each backend component to publish an OpenAPI contract and a sandbox before front-end build begins. For the components Qualiteq owns, a realistic publication date is the single biggest input to our Phase 1 timeline - we will flag it as a dependency either way.</p>
+        <div class="options"><button class="opt">Date can be committed now</button><button class="opt">After vendor selection</button><button class="opt">Needs internal check</button></div>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="q-num">12</div>
+      <div>
+        <h3>Payment aggregator: preference and ownership</h3>
+        <p>Selcom, DPO/Pesapal, Flutterwave, or open to our proposal? And who holds the contractual relationship with the aggregator - the end-client, Qualiteq, or the vendor? This shapes the Bank of Tanzania compliance confirmation the SOW asks for, and it interacts with pre-authorisation support on mobile money.</p>
+        <div class="options"><button class="opt">Preference exists</button><button class="opt">Open to proposal</button><button class="opt">End-client decides</button></div>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="q-num">13</div>
+      <div>
+        <h3>Support & SLA: coverage expectation</h3>
+        <p>The SOW defines a 30-minute response for critical incidents and asks vendors to propose a coverage model. Before we price the 12-month support term, it helps to know whether the expectation for the 6-station pilot is business-hours or 24/7 coverage - the cost difference is meaningful and we would rather quote the right one.</p>
+        <div class="options"><button class="opt">Business hours</button><button class="opt">24/7</button><button class="opt">Propose both</button></div>
+      </div>
+    </div>
+
+    <div class="scope-note" style="margin-top:30px"><strong>Logistics to confirm before we close:</strong> the exact proposal deadline (one week from receipt of the SOW - we would like to fix the date), submission by email to Lakruwan Senevirathne, and the agreed channel for written questions during the SOW period.</div>
+  </div>
+</section>
+
+<section class="deps">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">To keep the 3 weeks on track</div>
+        <h2>Four things we need from your side</h2>
+      </div>
+    </div>
+    <div class="dep-grid">
+      <div class="dep"><span class="when">Before Discovery</span><b>Rough sketches / wireframes</b><p>The ones mentioned on our intro call - they feed the AI-assisted design directly.</p></div>
+      <div class="dep"><span class="when">Week 1</span><b>M-Pesa sandbox access</b><p>Vodacom sandbox credentials or a merchant contact to start onboarding.</p></div>
+      <div class="dep"><span class="when">Week 1</span><b>Design feedback within 48h</b><p>The compressed design week only works with a fast feedback loop.</p></div>
+      <div class="dep"><span class="when">By week 3</span><b>Test-user list</b><p>Apple IDs and Google accounts for TestFlight / Play Internal distribution.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="timeline">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Delivery plan</div>
+        <h2>Three weeks, three clear blocks</h2>
+      </div>
+    </div>
+    <div class="weeks">
+      <div class="week"><h3>Week 1 · Foundation</h3><ul><li>Discovery workshop + AI-assisted design from your sketches</li><li>Backend scaffolding, auth, seeded stations</li><li>M-Pesa sandbox kickoff</li></ul></div>
+      <div class="week"><h3>Week 2 · Core loop</h3><ul><li>Map and discovery</li><li>Session engine and charging flows</li><li>Payment sandbox integration</li></ul></div>
+      <div class="week"><h3>Week 3 · Ship</h3><ul><li>Receipts, history, push, analytics</li><li>QA hardening on the full loop</li><li>TestFlight / Play Internal distribution</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="next">
+  <div class="wrap">
+    <div class="eyebrow">After this call</div>
+    <h2>Next steps</h2>
+    <div class="steps">
+      <div class="step"><span class="n">1</span><p>Track 1: we fold today's decisions into the interactive estimate, where each optional line can be toggled with its budget impact visible.</p></div>
+      <div class="step"><span class="n">2</span><p>Track 2: we structure the SOW proposal per the options confirmed today, itemised by component, and submit to Lakruwan within the deadline.</p></div>
+      <div class="step"><span class="n">3</span><p>You review with your manager - we are happy to join a short call or connect you directly with existing clients as references.</p></div>
+      <div class="step"><span class="n">4</span><p>On Track 1 sign-off, we schedule the Discovery workshop and kick off week 1 - sketches and sandbox access in hand.</p></div>
+    </div>
+    <div class="footer-line">
+      <span>Wolfpack Digital · Cluj-Napoca, Romania</span>
+      <span>Confidential - prepared for Qualiteq</span>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Tap-to-mark options during the call (single-select per question, in-memory only)
+  document.querySelectorAll('.q .options').forEach(group=>{
+    group.querySelectorAll('.opt').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        group.querySelectorAll('.opt').forEach(b=>b.classList.remove('selected'));
+        btn.classList.add('selected');
+      });
+    });
+  });
+</script>
+</body>
+</html>
