@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EV Charging Network — Concept Screens (Light) · Wolfpack Digital</title>
+<link rel="preconnect" href="https://api.fontshare.com">
+<style>
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap');
+:root{
+  --sunset:#FA357B; --moon:#FFCF35; --moon-deep:#B88A00;
+  --borealis:#00CFB6; --teal-deep:#05665b; --midnight:#6561FF; --midnight-deep:#4b48c9;
+  --ink:#151329; --body:#3a3850; --muted:#6b6982; --faint:#9a98b0;
+  --line:#ECEAF6; --line2:#E3E1F0;
+  --bg:#F5F4FC; --card:#FFFFFF; --surface:#FBFAFF;
+  --shadow:0 18px 50px rgba(101,97,255,.10); --shadow-sm:0 4px 16px rgba(101,97,255,.07);
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Satoshi',-apple-system,BlinkMacSystemFont,sans-serif;color:var(--body);
+  -webkit-print-color-adjust:exact;print-color-adjust:exact;
+  background:
+    radial-gradient(900px 500px at 8% -8%, rgba(101,97,255,.14), transparent 60%),
+    radial-gradient(820px 460px at 100% 2%, rgba(0,207,182,.14), transparent 58%),
+    radial-gradient(700px 500px at 60% 120%, rgba(250,53,123,.08), transparent 60%),
+    var(--bg);}
+.page{max-width:1180px;margin:0 auto;padding:0 24px 80px}
+
+/* masthead (light) */
+.masthead{padding:38px 0 26px;display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap}
+.wordmark{display:flex;flex-direction:column;align-items:flex-start;gap:9px}
+.wordmark .wplogo svg{height:36px;width:auto;display:block}
+.wordmark .tag{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.prepared{text-align:right;color:var(--muted);font-size:12.5px;line-height:1.7}
+.prepared b{color:var(--ink);font-weight:700}
+.chip{display:inline-block;background:#fff;border:1px solid var(--line2);color:var(--midnight-deep);
+  border-radius:30px;padding:5px 12px;font-size:11px;letter-spacing:.03em;font-weight:600;box-shadow:var(--shadow-sm)}
+
+.hero{max-width:880px;margin:6px 0 8px}
+.hero h1{font-size:35px;line-height:1.09;letter-spacing:-.025em;margin:0 0 14px;font-weight:900;color:var(--ink)}
+.hero h1 em{font-style:normal;color:var(--sunset)}
+.hero p{font-size:15.5px;line-height:1.6;color:var(--body);margin:0}
+.hero .tags{margin-top:18px;display:flex;gap:8px;flex-wrap:wrap}
+.hero .tags i{font-style:normal;font-size:11.5px;color:var(--midnight-deep);background:#fff;
+  border:1px solid var(--line2);padding:6px 11px;border-radius:20px;box-shadow:var(--shadow-sm)}
+
+/* screen block */
+.screen{margin-top:50px}
+.screen-head{display:flex;align-items:center;gap:14px;margin-bottom:14px;flex-wrap:wrap}
+.screen-head .n{font-weight:900;font-size:13px;color:#fff;background:var(--midnight);
+  width:30px;height:30px;border-radius:9px;display:grid;place-items:center;flex:0 0 auto;box-shadow:0 6px 16px rgba(101,97,255,.35)}
+.screen-head h2{font-size:22px;margin:0;font-weight:800;letter-spacing:-.02em;color:var(--ink)}
+.screen-head .who{font-size:12px;color:var(--muted);border-left:1px solid var(--line2);padding-left:14px}
+.screen-head .who b{color:var(--teal-deep)}
+.optbadge{font-size:10.5px;font-weight:800;letter-spacing:.04em;color:var(--teal-deep);background:#E9FBF8;
+  border:1px solid #bff0e8;border-radius:20px;padding:5px 11px;margin-left:auto}
+.optbadge.b{color:var(--moon-deep);background:#FFF7DE;border-color:#f2e2a6}
+.optbadge.c{color:#c31459;background:#FFF0F5;border-color:#fbd3e2}
+.caption{color:var(--body);font-size:13.5px;line-height:1.65;max-width:940px;margin:0 0 18px}
+.caption b{color:var(--ink)}
+
+/* frames */
+.browser{background:var(--card);border-radius:20px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line)}
+.tb{height:40px;background:#fbfaff;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:7px;padding:0 15px}
+.tb i{width:11px;height:11px;border-radius:50%;background:#e4e2ef;display:inline-block}
+.tb i:nth-child(1){background:#ff8a80}.tb i:nth-child(2){background:#ffd479}.tb i:nth-child(3){background:#7fe3b0}
+.tb .url{margin-left:12px;background:#fff;border:1px solid var(--line2);border-radius:8px;font-size:11.5px;color:var(--muted);padding:5px 13px;flex:1;max-width:360px}
+
+/* light app shell */
+.app{display:grid;grid-template-columns:212px 1fr;min-height:560px}
+.side{background:#fbfaff;border-right:1px solid var(--line);padding:18px 14px;display:flex;flex-direction:column;gap:3px}
+.side .brand{display:flex;align-items:center;gap:10px;margin-bottom:18px;padding:0 6px}
+.side .brand .m{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--borealis),var(--midnight));display:grid;place-items:center;font-weight:900;font-size:15px;color:#fff;box-shadow:0 6px 16px rgba(101,97,255,.3)}
+.side .brand b{font-size:15px;font-weight:900;letter-spacing:-.01em;color:var(--ink)}
+.side .brand small{display:block;font-size:9px;letter-spacing:.14em;color:var(--faint);text-transform:uppercase;margin-top:1px}
+.nav{display:flex;align-items:center;gap:10px;padding:9px 11px;border-radius:10px;font-size:13px;color:var(--muted);cursor:default;font-weight:500}
+.nav svg{width:16px;height:16px;opacity:.7}
+.nav.active{background:linear-gradient(90deg,rgba(101,97,255,.14),rgba(0,207,182,.10));color:var(--midnight-deep);font-weight:700}
+.nav.active svg{opacity:1;color:var(--midnight)}
+.side .sep{height:1px;background:var(--line);margin:10px 4px}
+.side .usr{margin-top:auto;display:flex;align-items:center;gap:9px;padding:8px 6px;font-size:12px;color:var(--body)}
+.side .usr .av{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--sunset),var(--moon));flex:0 0 auto}
+.side .usr b{color:var(--ink)}
+
+.main{background:var(--surface);padding:22px 24px}
+.main .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;flex-wrap:wrap;gap:10px}
+.main .top h3{margin:0;font-size:19px;color:var(--ink);font-weight:800;letter-spacing:-.02em}
+.main .top p{margin:3px 0 0;font-size:12.5px;color:var(--muted)}
+.btn{background:var(--sunset);color:#fff;border:none;border-radius:11px;padding:10px 16px;font-size:13px;font-weight:700;font-family:inherit;box-shadow:0 8px 20px rgba(250,53,123,.28)}
+.btn.ghost{background:#fff;color:var(--body);border:1px solid var(--line2);box-shadow:var(--shadow-sm)}
+
+/* KPI */
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:13px;margin-bottom:20px}
+.kpis.four{grid-template-columns:repeat(4,1fr)}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:16px;padding:15px 16px;box-shadow:var(--shadow-sm);position:relative;overflow:hidden}
+.kpi::after{content:"";position:absolute;right:-20px;top:-20px;width:60px;height:60px;border-radius:50%;opacity:.10}
+.kpi.t::after{background:var(--borealis)}.kpi.m::after{background:var(--midnight)}.kpi.s::after{background:var(--sunset)}.kpi.y::after{background:var(--moon)}.kpi.g::after{background:var(--teal-deep)}
+.kpi .lb{font-size:11px;color:var(--muted);display:flex;align-items:center;gap:6px;font-weight:600}
+.kpi .lb .d{width:8px;height:8px;border-radius:50%}
+.kpi .v{font-size:26px;font-weight:900;color:var(--ink);margin-top:9px;letter-spacing:-.02em}
+.kpi .s{font-size:11px;color:var(--muted);margin-top:3px;font-weight:500}
+.kpi .s.up{color:var(--teal-deep);font-weight:700}
+.kpi .s.warn{color:#c31459;font-weight:700}
+
+/* generic card */
+.vizrow{display:grid;grid-template-columns:1.35fr 1fr;gap:14px;margin-bottom:18px}
+.vcard{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);overflow:hidden}
+.vcard .vh{padding:14px 17px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line)}
+.vcard .vh b{font-size:13.5px;color:var(--ink)}.vcard .vh span{font-size:11px;color:var(--muted)}
+.vcard .vb{padding:16px 17px}
+
+/* heatmap */
+.hm{display:grid;grid-template-columns:88px repeat(8,1fr);gap:5px;align-items:center}
+.hm .hmh{font-size:9.5px;color:var(--faint);text-align:center;font-weight:600}
+.hm .hml{font-size:11px;color:var(--body);font-weight:600;white-space:nowrap}
+.hm .cell{height:26px;border-radius:6px}
+.hm-legend{display:flex;align-items:center;gap:7px;margin-top:13px;font-size:10.5px;color:var(--muted)}
+.hm-legend .sw{width:15px;height:12px;border-radius:3px}
+
+/* bars */
+.bars{display:flex;align-items:flex-end;gap:12px;height:150px;padding-top:8px}
+.bar-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:7px;height:100%;justify-content:flex-end}
+.bar-col .bk{width:100%;max-width:34px;border-radius:8px 8px 3px 3px;background:linear-gradient(180deg,var(--midnight),var(--borealis))}
+.bar-col .bl{font-size:10px;color:var(--muted);font-weight:600}
+.bar-col .bv{font-size:10.5px;color:var(--ink);font-weight:800}
+
+/* table */
+table.mt{width:100%;border-collapse:collapse;background:#fff}
+table.mt th{text-align:left;font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--faint);padding:11px 16px;border-bottom:1px solid var(--line);font-weight:700}
+table.mt td{padding:13px 16px;border-bottom:1px solid var(--line);font-size:12.5px;color:var(--body);vertical-align:middle}
+table.mt tr:last-child td{border-bottom:none}
+.stn-cell{display:flex;align-items:center;gap:11px}
+.stn-cell .th{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,#eceafd,#dcf6f1);flex:0 0 auto;display:grid;place-items:center;font-size:12px;font-weight:900;color:var(--midnight-deep)}
+.stn-cell b{color:var(--ink);font-size:13px}.stn-cell small{color:var(--muted);display:block;font-size:11px}
+.oem b{color:var(--ink);font-weight:700;font-size:12.5px}.oem small{display:block;color:var(--muted);font-size:10.5px}
+.mono{font-variant-numeric:tabular-nums}
+.st{font-size:11px;font-weight:700;padding:5px 10px;border-radius:20px;display:inline-block;white-space:nowrap}
+.st.ava{background:#E9FBF8;color:var(--teal-deep)}
+.st.chg{background:#EEEDFF;color:var(--midnight-deep)}
+.st.flt{background:#FFF0F5;color:#c31459}
+.st.off{background:#F0EFF5;color:#5a5f6e}
+.act{font-size:11px;font-weight:700;color:var(--midnight-deep);border:1px solid #d9d7f4;background:#f4f3ff;border-radius:9px;padding:6px 12px;display:inline-block}
+.act.off{color:#a9a7ba;border-color:#eceaf3;background:#f8f7fb}
+.ok{color:var(--teal-deep);font-weight:700}.bad{color:#c31459;font-weight:700}
+.tiny{font-size:10.5px;color:var(--muted)}
+.dt{font-weight:700;color:var(--ink)}.dt small{display:block;font-weight:400;color:var(--muted);font-size:10.5px}
+
+/* split panels */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);overflow:hidden}
+.panel .ph{padding:14px 17px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+.panel .ph b{font-size:13.5px;color:var(--ink)}.panel .ph span{font-size:11px;color:var(--muted)}
+.panel .pb{padding:15px 17px}
+
+/* pricing editor */
+.seg{display:flex;gap:6px;background:#f2f1fa;border-radius:12px;padding:5px}
+.seg span{flex:1;text-align:center;font-size:11.5px;font-weight:700;color:var(--muted);padding:8px 6px;border-radius:9px}
+.seg span.on{background:#fff;color:var(--midnight-deep);box-shadow:var(--shadow-sm)}
+.fld{margin-top:15px}
+.fld label{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;display:block;margin-bottom:6px;font-weight:700}
+.fld .in{border:1px solid var(--line2);border-radius:11px;padding:11px 13px;font-size:13px;color:var(--ink);background:#fff;display:flex;align-items:center;justify-content:space-between}
+.fld .in .cur{color:var(--muted);font-size:11.5px}
+.tier{display:flex;align-items:center;gap:8px;margin-top:9px;font-size:12px;color:var(--body)}
+.tier .rng{flex:0 0 auto;background:#EEEDFF;color:var(--midnight-deep);font-weight:700;border-radius:8px;padding:6px 10px;font-size:11px}
+.tier .val{margin-left:auto;font-weight:800;color:var(--ink)}
+.preview{margin-top:15px;background:linear-gradient(135deg,#f3f2ff,#e9fbf8);border:1px solid var(--line2);border-radius:14px;padding:15px 17px}
+.preview .r{display:flex;justify-content:space-between;font-size:12.5px;color:var(--body);margin-bottom:7px}
+.preview .r.tot{color:var(--ink);font-weight:900;font-size:16px;border-top:1px solid var(--line2);padding-top:10px;margin-top:9px}
+.preview .r .g{color:var(--teal-deep);font-weight:700}
+.pub{display:flex;align-items:center;gap:8px;margin-top:13px;font-size:11.5px;color:var(--teal-deep);font-weight:700}
+.prod-list .r{display:flex;align-items:center;gap:12px;padding:13px 17px;border-bottom:1px solid var(--line);font-size:12.5px}
+.prod-list .r:last-child{border-bottom:none}
+.prod-list .r.sel{background:linear-gradient(90deg,rgba(101,97,255,.08),transparent)}
+.prod-list .r .ico{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-size:15px;flex:0 0 auto}
+.prod-list .r b{color:var(--ink);font-size:13px}.prod-list .r small{display:block;color:var(--muted);font-size:11px}
+.prod-list .r .pr{margin-left:auto;font-weight:900;color:var(--ink);text-align:right;font-size:12.5px}
+.prod-list .r .pr small{color:var(--muted);font-weight:500}
+
+/* phone (light iOS) */
+.phonewrap{display:flex;gap:34px;align-items:flex-start;flex-wrap:wrap}
+.phone{width:332px;flex:0 0 auto;background:#e9e7f5;border-radius:44px;padding:11px;box-shadow:var(--shadow);border:1px solid #fff;margin:0 auto}
+.phone .scr{background:#F5F4FC;border-radius:34px;overflow:hidden;position:relative}
+.notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:100px;height:23px;background:#0b1016;border-radius:0 0 15px 15px;z-index:5;box-shadow:inset 0 0 0 1px rgba(255,255,255,.05)}
+.notch::after{content:"";position:absolute;top:8px;right:20px;width:6px;height:6px;border-radius:50%;background:#1c2b30;box-shadow:inset 0 0 0 1px rgba(120,200,190,.25)}
+.ph-head{background:linear-gradient(135deg,#eef0ff,#e4faf5);padding:30px 18px 16px;position:relative;border-bottom:1px solid var(--line)}
+.ph-head .back{font-size:12px;color:var(--midnight-deep);font-weight:600}
+.ph-head h4{margin:8px 0 2px;font-size:18px;font-weight:900;letter-spacing:-.01em;color:var(--ink)}
+.ph-head .sub{font-size:11.5px;color:var(--muted)}
+.ph-head .prog{display:flex;gap:5px;margin-top:14px}
+.ph-head .prog i{flex:1;height:4px;border-radius:3px;background:rgba(101,97,255,.18)}
+.ph-head .prog i.on{background:var(--borealis)}
+.ph-body{padding:15px}
+.sect-t{font-size:12px;font-weight:800;color:var(--ink);margin:4px 0 9px;display:flex;align-items:center;justify-content:space-between}
+.sect-t span{font-size:10.5px;color:var(--teal-deep);font-weight:700}
+.statusrow{display:flex;gap:9px}
+.statusrow .cc{flex:1;border:1px solid var(--line);border-radius:13px;padding:11px;text-align:center;background:#fff;box-shadow:var(--shadow-sm)}
+.statusrow .cc .l{font-size:10px;color:var(--muted);font-weight:600}
+.statusrow .cc .v{font-size:13px;font-weight:800;margin-top:4px}
+.statusrow .cc.on{border-color:#bff0e8;background:#f2fdfb}.statusrow .cc.on .v{color:var(--teal-deep)}
+.statusrow .cc.busy .v{color:var(--midnight-deep)}
+.slots{display:flex;gap:8px;margin-top:2px;flex-wrap:wrap}
+.slots .sl{font-size:12px;border:1px solid var(--line2);border-radius:11px;padding:9px 13px;color:var(--body);background:#fff;font-weight:600}
+.slots .sl.on{background:var(--midnight);color:#fff;border-color:var(--midnight);box-shadow:0 6px 14px rgba(101,97,255,.3)}
+.prodpick{display:flex;align-items:center;gap:11px;margin-top:9px;border:1px solid var(--line2);border-radius:14px;padding:12px 14px;background:#fff;box-shadow:var(--shadow-sm)}
+.prodpick.on{border-color:var(--borealis);background:#f2fdfb}
+.prodpick .rd{width:19px;height:19px;border-radius:50%;border:5px solid var(--borealis);flex:0 0 auto}
+.prodpick .rd.off{border:2px solid var(--line2)}
+.prodpick b{color:var(--ink);font-size:13px}.prodpick small{display:block;color:var(--muted);font-size:11px}
+.prodpick .pr{margin-left:auto;font-weight:900;color:var(--ink);font-size:12.5px;text-align:right}
+.prodpick .pr small{display:block;font-weight:500;color:var(--muted)}
+.coupon{display:flex;align-items:center;gap:11px;margin-top:11px;border:1.5px dashed var(--borealis);background:#f2fdfb;border-radius:13px;padding:10px 12px}
+.coupon .c-ic{width:32px;height:32px;flex:0 0 auto;display:grid;place-items:center;background:#EAFBF4;border-radius:9px}
+.coupon .c-ic svg{width:19px;height:19px;display:block}
+.coupon .c-tx{flex:1;min-width:0;line-height:1.28}
+.coupon .c-tx b{display:block;font-size:12.5px;color:#0B6E52;font-weight:800}
+.coupon .c-tx small{font-size:11px;color:var(--muted)}
+.coupon .c-bd{flex:0 0 auto;background:#12B886;color:#fff;font-weight:800;font-size:11px;padding:5px 10px;border-radius:20px;letter-spacing:.02em}
+.coupon b{color:#05564c}
+.pricebox{margin-top:12px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px 15px;box-shadow:var(--shadow-sm)}
+.pricebox .r{display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted);margin-bottom:7px}
+.pricebox .r .g{color:var(--teal-deep);font-weight:700}
+.pricebox .r.tot{color:var(--ink);font-weight:900;font-size:16px;border-top:1px solid var(--line);padding-top:10px;margin-top:8px}
+.pay{display:flex;gap:8px;margin-top:12px}
+.pay .m{flex:1;border:1px solid var(--line2);border-radius:12px;padding:10px;text-align:center;font-size:11px;font-weight:700;color:var(--body);background:#fff}
+.pay .m.on{border-color:var(--sunset);background:#FFF0F5;color:#c31459}
+.refbox{margin-top:12px;background:linear-gradient(135deg,#eef0ff,#e4faf5);border:1px solid var(--line2);border-radius:14px;padding:13px 16px;display:flex;align-items:center;justify-content:space-between}
+.refbox .l{font-size:11px;color:var(--muted);font-weight:600}.refbox .l b{display:block;color:var(--ink);font-size:12.5px;margin-top:3px}
+.refbox .code{font-size:25px;font-weight:900;letter-spacing:.16em;color:var(--midnight-deep)}
+.ph-cta{background:var(--sunset);color:#fff;text-align:center;padding:15px;border-radius:14px;font-weight:800;font-size:14px;margin-top:14px;box-shadow:0 10px 22px rgba(250,53,123,.32);display:flex;align-items:center;justify-content:center;gap:8px}
+.side-notes{flex:1;min-width:260px;padding-top:6px}
+.side-notes .nt{display:flex;gap:12px;margin-bottom:18px}
+.side-notes .nt .b{width:36px;height:36px;border-radius:11px;flex:0 0 auto;display:grid;place-items:center;font-size:16px}
+.side-notes .nt h5{margin:0 0 3px;font-size:14px;color:var(--ink);font-weight:800}
+.side-notes .nt p{margin:0;font-size:12.5px;color:var(--body);line-height:1.55}
+.side-notes .nt p b{color:var(--ink)}
+
+/* =========================================================
+   EV-charging PRODUCT palette — scoped to the device frames.
+   The Wolfpack presentation frame (masthead / hero / footer /
+   side-notes) keeps its own brand colours; only the product
+   UI inside .browser / .phone is recoloured.
+   ========================================================= */
+.browser, .phone{
+  --borealis:#12B886;      /* charge green — available / energy */
+  --teal-deep:#0B6E52;     /* deep green text */
+  --midnight:#0E8C93;      /* electric teal — data / interactive */
+  --midnight-deep:#0B646B; /* deep teal text */
+  --sunset:#0E9E74;        /* PRIMARY action → charge green */
+  --moon:#F6C445; --moon-deep:#8A6300;
+  --ink:#0C2530;           /* deep charging-night navy */
+  --body:#334750; --muted:#5f717a; --faint:#93a3ab;
+  --line:#E6EFEC; --line2:#D8E6E1; --surface:#F6FBF9; --bg:#F1F8F6;
+  --fault:#D64545;
+  --shadow:0 18px 50px rgba(11,95,82,.12);
+  --shadow-sm:0 4px 16px rgba(11,95,82,.07);
+}
+/* status pills — explicit so meaning stays legible */
+.browser .st.ava,.phone .st.ava{background:#E4F7EF;color:#0B6E52}
+.browser .st.chg,.phone .st.chg{background:#E8EEFF;color:#2A54C4}
+.browser .st.flt,.phone .st.flt{background:#FDECEA;color:#C6342E}
+.browser .st.off,.phone .st.off{background:#EEF1F1;color:#5a6b6b}
+/* fault-coded bits */
+.browser .kpi.s::after{background:var(--fault)}
+.browser .kpi .s.warn,.phone .kpi .s.warn{color:#C6342E}
+.browser .bad{color:#C6342E}
+/* recoloured accents that were hard-coded */
+.browser .btn{box-shadow:0 8px 20px rgba(14,158,116,.26)}
+.browser .btn.ghost{box-shadow:var(--shadow-sm)}
+.browser .preview,.phone .preview{background:linear-gradient(135deg,#eafaf3,#e6f5f7);border-color:#d3ece4}
+.browser .nav.active{background:linear-gradient(90deg,rgba(18,184,134,.16),rgba(14,140,147,.10));color:var(--midnight-deep)}
+.browser .nav.active svg{color:var(--borealis)}
+.browser .side .brand .m{box-shadow:0 6px 16px rgba(14,140,147,.28)}
+.browser .stn-cell .th{background:linear-gradient(135deg,#e2f4ee,#dcf6f1);color:#0B646B}
+.browser .tier .rng{background:#E8EEFF;color:#2A54C4}
+.browser .prod-list .r.sel{background:linear-gradient(90deg,rgba(18,184,134,.10),transparent)}
+.phone .slots .sl.on{box-shadow:0 6px 14px rgba(14,140,147,.30)}
+.phone .prodpick.on{background:#EAFBF4}
+.phone .ph-cta{box-shadow:0 10px 22px rgba(14,158,116,.3)}
+.phone .refbox .code{color:#0B646B}
+.browser .act{background:#EAF6F1;border-color:#CFE7DE;color:#0B646B}
+.browser .act.off{background:#f4f6f6;border-color:#e6eceb;color:#a4b0af}
+.phone .refbox{background:linear-gradient(135deg,#e8f5f1,#e4faf5);border-color:#d3ece4}
+
+/* ---- Mobile hero photo ---- */
+.hero-photo{position:relative;height:224px;overflow:hidden}
+.hero-photo .scene{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hp-top{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:33px 14px 0;z-index:3}
+.hp-back{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.9);display:grid;place-items:center;color:#0C2530;font-size:17px;font-weight:800;box-shadow:0 4px 14px rgba(0,0,0,.22)}
+.hp-live{background:rgba(18,184,134,.96);color:#03291f;font-size:11px;font-weight:800;padding:7px 12px;border-radius:20px;display:flex;align-items:center;gap:6px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+.hp-live i{width:7px;height:7px;border-radius:50%;background:#03291f;display:inline-block}
+.hp-meta{position:absolute;left:0;right:0;bottom:0;padding:32px 16px 15px;z-index:3;background:linear-gradient(to top,rgba(6,16,20,.92),rgba(6,16,20,.35) 55%,transparent);color:#fff}
+.hp-name{font-size:20px;font-weight:900;letter-spacing:-.01em;text-shadow:0 2px 10px rgba(0,0,0,.55)}
+.hp-sub{font-size:11.5px;color:#e2f0eb;margin-top:3px;text-shadow:0 1px 6px rgba(0,0,0,.55)}
+.hp-chips{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+.hp-chips span{font-size:10.5px;font-weight:700;color:#fff;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);padding:4px 9px;border-radius:20px}
+.hp-chips span.star{color:#0C2530;background:#F6C445;border-color:#F6C445}
+/* step indicator */
+.resv-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:11px}
+.resv-t{font-size:16px;font-weight:900;color:var(--ink)}
+.resv-s{font-size:11px;color:var(--muted);margin-top:1px}
+.resv-step{font-size:10.5px;font-weight:800;color:#0B6E52;background:#E4F7EF;padding:5px 10px;border-radius:20px;white-space:nowrap}
+.stepbar{display:flex;gap:5px;margin-bottom:14px}
+.stepbar i{flex:1;height:5px;border-radius:3px;background:#e2ece9}
+.stepbar i.on{background:#12B886}
+/* payment grid with icons */
+.paygrid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:2px}
+.pm{display:flex;align-items:center;gap:10px;border:1px solid #D8E6E1;border-radius:14px;padding:11px 12px;background:#fff;font-size:12.5px;font-weight:700;color:#334750;box-shadow:0 4px 16px rgba(11,95,82,.06);position:relative}
+.pm.on{border-color:#12B886;background:#EAFBF4;color:#0B6E52;box-shadow:0 6px 16px rgba(18,184,134,.16)}
+.pm .pic{width:34px;height:34px;flex:0 0 auto;display:block}
+.pm .tick{position:absolute;top:8px;right:9px;width:16px;height:16px;border-radius:50%;background:#12B886;display:none;place-items:center}
+.pm.on .tick{display:grid}
+.pm .tick svg{width:9px;height:9px}
+
+/* footer */
+.foot{margin-top:60px;border-top:1px solid var(--line2);padding-top:26px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;color:var(--muted);font-size:12px}
+.foot .pw{display:flex;align-items:center;gap:10px}
+.foot .pw .pw-label{color:var(--body);font-weight:600}
+.foot .wplogo svg{height:22px;width:auto;display:block}
+.foot .dis{max-width:560px;text-align:right;line-height:1.6}
+
+@media(max-width:920px){
+  .kpis,.kpis.four{grid-template-columns:repeat(2,1fr)}
+  .vizrow,.split{grid-template-columns:1fr}
+  .app{grid-template-columns:1fr}
+  .side{flex-direction:row;overflow-x:auto;gap:8px}
+  .side .brand,.side .sep,.side .usr{display:none}
+  .hero h1{font-size:27px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- MASTHEAD -->
+  <div class="masthead">
+    <div class="wordmark">
+      <div class="wplogo"><svg xmlns="http://www.w3.org/2000/svg" width="145" height="39" fill="none" viewBox="0 0 145 39"><path fill="#fa357b" d="m111.4 27.4.2-.2v-.3l-.1.3zq-.2.2 0 .3h-.2v.1l-.2.2v.2l-.2.3-.3.2q0 .3-.2.4l-.2.2h.2l.2-.2.3-.4h.2v-.1h-.1v-.2h.1l.1-.2V28h.2l.2-.2zm-1.7 2 .2-.1.2-.2h-.2zm-.5-.2q.1-.3.2 0l-.5.3v-.1l.1-.1zm-3.8 4.3.2-.1.5-.4-.4.3-.4.2-.1.1v.1zm0-.7h-.2v.2h.1zm-.8.4h.3l.1-.3-.2.2zm-1.2.5-.1-.1h-.2v.1zM113 24v1.3a9 9 0 0 1-.9 2.7l-.1.2-.1.2-.1.2-.2.3-.2.3q0 .3-.3.5l-.3.5-.8.8-.3.3-1 .8-1.5 1.3-.1.1-.4.2-.2.3-.2.1h-.3l-.2.1-.2.2-.7.4h-.3l-.2.1-.2.1q-.3 0-.3.3l-.1.1h-.1v-.1l-.1-.2h-.4l-.2-.2-.3-.2v-.1l-.1-.1-.2-.3-.2-.2-.2-.3v-.8l.1-1 .2-.7V31l.1-.2.1-.2v.3l-.1.2v.1h.2v.5l-.1.2-.1.2v1l.2.2h.9l.1-.1a28 28 0 0 1 .9-5.6V27l.3-1.2v-.2l.1-.4.3-.2h.8l.2.2h.1l.1.2.1.2v1l-.1.3-.2.7v.3l-.2.2-.2.2v.6h-.2v.4l-.2.6v.2l-.1.2-.1.4-.1.6v.1l-.1.1-.2.3-.1.4-.1.4q0 .1 0 0l3-1.9 1.1-.9 1.2-1.2 1.1-1.5.8-1.5.4-1.6v-1.4l-.3-.3-.3-.3-.3-.1-.3-.1h-1.5a9 9 0 0 0-3.7 1.6l-.4.2-.4.2q-.4.3-.8 0l-.1-.2h-.1V23l.7-.6 1.4-.8 2.7-1h1.9l.3.2.3.2.7.3.2.1.1.4.2.3.1.3.2.2.1.5v.4zm4.7-3v.5l-.2.3-.2.2-.3.4v.2l-.2.2-.1.1-.1.1-.1.2q0 .2-.2.2 0 .3-.2.2h-.1l-.3-.4v-.5l.8-2.4h.4-.1.3l.2.1v.1h.1v.2h.1zm-3.3 8.3V29l-.2.1v.2zm-.2.5v-.1zm0-.2.1-.1v-.2h-.1l-.2-.1v.1l-.2 1.5v.1h.1v-.5l.1-.2.1-.1V30l-.1-.1v-.2l.1-.2zM114 31v-.2zv1.2-.1l-.2-.2v-.3l.1 1.2q.2 0 .1-.1v-.4l.1-.1zm-.4 0v.2h.1zm1.9-6.7.3.2.4.5v.6l-.3.4-.2.8-.5 1.4v.3l-.1.1v.4l-.2.1h.1v.2l-.1.2-.2.5v.1l.1.2v.3l-.1.2V32h-.2v.1h.2v.6h-.1v1l-.5-.1-.3-.4-.1-.4-.2-.5v-2.5l1.2-5.4zm7.3 6.9V31l-.1-.1v.1l-.2.5v.3l.2-.3zm-.1 1h-.3v.1h.3zm-.4.5.1-.1h.1l-.2-.1h-.1v.3l-.2.3v.3l-.2.2h.3l.2-.2zm-1 1.5-.2.2h.2zm.7 0V34l.1-.3-.3.1-.1.1-.1.3-.1.2v.1l-.1.1-.1.3v.3h-.2l-.1.3v.3h.3l.1-.3.1-.2v-.4h.2v-.3q.3-.2 0-.3h.2m-1.1.8-.1.2v.2-.2zm-.2.6-.3.1zm-.4.5h.3zm0 0v.3h.1l.1-.1zm2-10.4.2-.2v-.3h-.1l-.9 1.2L120 29l-.2.5.1-.1.3-.4.2-.4zm-1 10.2-.2-.1h-.1l-.2.4-.2.2-.3.4-.2.2-.2.3-.3.4-.3.3h-.1l-.1.1.6-.2.2-.2.1-.2h.2l.1-.1.2-.2.2-.4v-.4h.4v-.2zm-2.6-9.8q-.3 0-.3.4zm-.2 12 .7-.3.6-.5.3-.4v-.2h.2v-.4l-.2.2-.2.3-.2.2v.1l-.2.2-.3.2q-.4.5-1 .5h-.1l-.1.1zm-.1-11.4h-.2l-.1.2v.2l-.1.1zm-.8 2.5.1-.1.1-.1v-.2l-.2.2zm-.4 1.5.3-.9-.2.1v.1l-.1.2zm-.2-1.3v.1zl.8-2v-.1l-.5 1zm0 1.8.1-.2v-.3.2zm7.5-5.4v1.5l-.1 1-.2 1v.5l-.1.3v.3l-.2.1-.1.2h.2l-.1.3-.1.2v.1l-.1.1.1.2v.1l-.2.3v.2l-.1.1h-.1v.1h.2l-.2.2-.1.2h.1l.1-.1v.1l-.2.1v.4q-.2 0-.2.2h.2l-.2.2h-.1l-.1.2v.3h-.3l.3.3-.3.4-.2.5h.2l-.2.2q0 .2-.2.3l-.1.1-.1.1v.1l-.1.4h-.2v.4l-.2.2-.2.2v.1h-.1v.1l-.4.5-.6.5h-.2l-.2.1-.1.1h-1.8l-.2-.1-1-.6q-.6-.4-.7-1V37l-.2-.2.6.6.4.4.6.4h.1l1.2-.5 1-1 .7-.9 1-2 .5-1.6.2-.8.6-3.2V26l-.4.5-.2.1v.2l-.1.1v.2l-.2.1-.1.2v.1h-.1v.1l-.3.4-.7 1.1-.2.3-.6 1.1-.5 1-.2.3-.2.4-.7.4h-.1l-.1.2h-.1l-.1.1h-.4l-.4-.3h-.2l-.3-.5-.1-.4v-.3l.4-2 .4-.9.3-1 .3-.4.1-.2.2-.3V26l.5-.5v-.3l.2-.2.1-.2.2-.2.4-.5.6-.5.2-.1h.3q0-.2.1 0h.4l.3.2.3.2.2.2.3.4.2.2v.3l-.1.1h-.2V25l-.2-.3-.1-.1h-.1l-.4.5q-.3 0-.5.4l-1.6 2.2v.1l-1.2 2.7-.2.3v.2l-.1.3v.2l-.1.1v.4h.4v-.1l1.4-2.2q0-.2.3-.5 0-.3.3-.5l.3-.4.2-.4 2.6-3.3h.2l.4.2.3.2.2.2.2.5zm5.1-6.5v.3q0 .3-.2.4l-.1.2-.2.2-.1.2-.1.2-.2.2v.1l-.2.1v.2l-.2.2-.2.2h-.2l-.3-.4V21l.9-2.4h.5l.3.1v.3h.2l.1.2zm-3.2 8.2v-.4l-.2.1v.2zm-.2.5V28h-.1m0-.2v-.3l-.2-.1v.1l-.3 1.5h.1l.1-.2v-.4l.2-.1-.1-.1v-.5zm-.2 1.5v-.2h-.1zl-.1.5v.6-.1l-.1-.2V30l-.1-.1.2 1.2.1-.1v-.8l.1-.2zm-.4 0v.2zm1.8-6.7.3.2.3.3.1.2v.6l-.2.4-.3.8-.5 1.4v.4q-.2.2-.1.3v.1l-.1.1v.4l-.2.5v.9l-.1.2v.8h-.2l.1.1h.1v.8l-.1.2.1.5v.1l-.5-.1-.3-.4-.2-.5v-.4l-.1-2V28l.7-3.4.1-.7.3-1.2.1-.1z"/><path fill="#fa357b" d="M130.8 23.6v-.5l.1-.3v-.3l-.1.4-.1.6zm-.7 3.9.1-.2q-.1 0 0 .2m-.2-3v-.2h.2v.2zm.7-.9v.3l-.2.4v.3l-.1.1v.2l-.2.6v1.4-.7l.2-.5v-.5l.2-.2v-.8q.2 0 .1-.3zm-.8 4.9-.1.1v.5h.1zm-.2 1.1V29zm.2-10.2h-.2l-.2.2h.3zm-.5 11.5v.2h.1zm0 .3v-.5.1-.2l-.1-.1zm.5-5v.2zV26h.2l-.1-.2V25v.4h.1l.2-.6h-.2l.1-.1.2-.4V24h-.2l.2-.4q.3-.2.2-.4h-.1v.1l.2-1v.2l.2-.3h-.2l.1-1V21h-.1l-.1.4-.6 2.5-.1.4v.4l-.2.5-.4 5V30v.3h.2V30l-.1-.4.3-.3h-.2v-.7h-.1l.1-.1h.1v-.3l.1-.3h-.1l.1-.1v-.3l-.2-.2h.1l.1.1v-.1l.1-.2.1-.7h-.1zm.5-6.6h-.2l-.5.2-.2.1h-.2l-1 .3-.1.1-.7.3h-.2v.2h.2l.2-.2h.3l.1-.1.4-.1.4-.2.4-.1q.3 0 .5-.2l.3-.1.4-.1.1-.1zm-3.3 1-.2.1v.1h.2zm2.2-.9-.4.1-.2.1h-.2l-2.2 1-.4.1-.3.2v.2l.2-.2.4-.2 1.5-.6 1.6-.6zm.5.7h-.3l-.2.1-.2.1-.3.1q-.3 0-.5.2l-.5.1-.2.1h-.3l-2.2.8-.1-.1q0-.5.3-.6l.6-.4.9-.4 1.2-.5 1.4-.5 1-.4.4-.1.1-.2.6-2 .3-1h.7l.4.1.2.2v.1l.2.1v.9h-.1l-.4 1 .1.2.9-.2h1.4l.7.3.1.2v.7l-.3.2-.7.1h-1.2l-1.2.2-.4.1v.6l-.2.4v.3l-.1.2-.1.1v.3l-.2.2v.6l-.1.2v.1l-.3.4v.6l-.2.1v.1h.2q-.2 0-.3.2v.3l-.1.2h.1v.2h-.2l.1.2h-.1l-.1.1v.1h.2l-.2.1v.9h-.2v.1l.1.1v.3q-.2 0 0 0v.7h-.2v.2h-.1V30h-.1l-.1.2V32l.2.2h.1-.6V32l-.1-.2h-.2v-.2l-.1-.2-.1-.2-.2-1.1v-2l.5-3.2.2-1v-.3l.1-.3.1-.5.4-1.5v-.2l.1-.7v-.1z"/><path fill="#fa357b" d="M135.1 27v-.2zm-1.8-1.5v-.1zm3.6-1.3.3-.6-.1.1-.2.1.4-.4.2-.4h-.2l-.1-.1h-.1l-.1-.1h-.2l-.3-.2-.4-.2q-.3 0-.3.2l-.6.9-.2.2v.1l-.2.2v.2l-.2.2-.1.3-.1.2v.1l-.2.4-.2.4-.2.5-.4 1.6v.2l-.2.1v1.3l.1.1a28 28 0 0 1 3-4.7l-.2.2-.3.5v.1h-.1v.2h-.1l-.2.3-.1.2v.1l-.2.1v.1h.2l.1-.3.1-.2h.1V26l.1-.1.1-.1.1-.3.2-.2.2-.3v-.2h.1l.1-.2zl.2-.2zm-3.6 2.2-.1.2zm-.4 1.4v-.2l.1-.1zm-.2-.9v-.1h.1v-.2l.1-.2.1-.2.2-1-.1.2v.1l-.2.2v.4l-.1.1v.2l-.1.2zm0 .1v.1l-.1.1v.1h.2zm-.2.7v-.2l.1-.2-.1.1zv.2zm0 .7q-.2 0 0-.1V28q-.3 0-.1.3zm5.4.6.2.2.1.1h.2v.2h-.8v-.1l-.2-.2h-.2l-.4-.7-.2-.9.1-.8.6-2.2.1-.4-.2.2-.5.7-.4.6-.2.2-.1.3-.2.2v.2h-.1l-.5.8v.4l-.4.5-.3.5-.1.2-.1.2-.1.2v.2l-.2.1-.2.4a.4.4 0 0 1-.6.1l-.2-.1v-.2h-.1l-.2-.2-.3-.4-.2-1.3.4-2 .7-2 1.3-2.4q0-.3.3-.4l.6.2 2.2 1.4h.1q0 .2 0 0l.6-.2.1.1h.2v.1h.2l.2.2.2.2v.6l-.3.5v.2l-.2.1-.5 1.4v.2l-.2.5v.4q-.2.1-.2.3zm4.1-6.4v-.2zm-.4.7.3-.2v-.4l-.1.3zm.2 0-.1.1v.2zm-.1 1v-.1h-.2v.3-.1zm-.3.4.2-.2h-.2zm-.2-1.8v-.3l.1-.1v-.4.2zm.2.9.2-.8h-.1v.3l-.1.2h-.2v-.1l-.1-.1v.1l-.1.2v.2h.1l.1-.1zm-.3.7v-.2l.1-.1h-.1l-.1.1v-.4l-.2.1v.1l-.1.2h.1v.1h-.2l.1.2q.3 0 .3-.2zm-.4-1.6-.1.4v.2h-.1zm-.2.7-.3 1 .1-.5zm-.2 1.3v.3-.6zm4-8 .1.2v.7l-.3.4v.1l-.1.2-.2.1v.1l-.2.3-.1.3v.3q-.3 0-.3.2v.4l-.2.2-.2.6v.1l-.2.2v.3l-.2.3v.4l-.1.2-.1.2v.3l-.1.1v.3l-.1.2v.2l-.1.1-.1.1v.5l-.1.2v.4h-.2l-.2.1v.1h.2v.4l-.2.1h.2l-.1.4v2.6l.1 1v.2l.2.3v.2h-.3l-.4-.3-.3-.4-.1-.1v-.2h-.1v-.2h-.1V29l-.3-2.1V25h.1v2.7-.6h.1v.4l.1.1v.3l.1.7h-.1l.2.2h-.1v.3h.1v.1h.1v-.4l-.1-.3v-.4l-.1-.8v-1h.2v-.1q-.2-.1-.1-.3v.1l.1.2V26l.1-.2h-.2v-.1h.2v-.2h.2l-.1-.1h-.4v.9l-.2.5v.1l.1.1v.1h-.1v-1.2l.2-.8v.2h.1V25h.3l-.1-.3v.2h-.2q-.2 0-.1-.2l.2-.9h.1v-.9l.2-.5.2-.6v-.1.3l.1-.1v-.4l.1-.1V21l.1-.2v-.2l.2-.2v-.6l-.1.2-.2.6-.2.6v.1l-.1.2-.1.2v.3l-.1.1v.3l-.1.2V22l1.6-4.6q0-.4.3-.8l.1-.2h.2l.2-.1h.2l.1.1h.2l.3.2q.3 0 .3.2"/><path fill="#000" d="m29.5 15.5 8.2-14.3H40l-8.2 14.3z"/><path stroke="#000" stroke-width=".7" d="m29.5 15.5 8.2-14.3H40l-8.2 14.3h-2.2Z" clip-rule="evenodd"/><path fill="#000" d="m31.6 15.5-1 2h-2.2l1-2z"/><path stroke="#000" stroke-width=".7" d="m31.6 15.5-1 2h-2.2l1-2z" clip-rule="evenodd"/><path fill="#000" d="M29.5 15.5h-2.2l-7-12.3 1.2-1.7z"/><path stroke="#000" stroke-width=".7" d="M29.5 15.5h-2.2l-7-12.3 1.2-1.7z" clip-rule="evenodd"/><path fill="#000" d="M19.3 15.5h10.2l-1 2H12.1l-1.1-2h8.1"/><path stroke="#000" stroke-width=".7" d="M19.3 15.5h10.2l-1 2H12.1l-1.1-2h8.1Z" clip-rule="evenodd"/><path fill="#000" d="m21.4 1.2-1 2-1.2-2z"/><path stroke="#000" stroke-width=".7" d="m21.4 1.2-1 2-1.2-2z" clip-rule="evenodd"/><path fill="#000" d="m19.1 1.5 1.3 1.7-7.1 12.3H11z"/><path stroke="#000" stroke-width=".7" d="m19.1 1.5 1.3 1.7-7.1 12.3H11z" clip-rule="evenodd"/><path fill="#000" d="m11 15.5 1 2h-2l-1.2-2z"/><path stroke="#000" stroke-width=".7" d="m11 15.5 1 2h-2l-1.2-2z" clip-rule="evenodd"/><path fill="#000" d="M11 15.5H9L2.4 4.2l-1.7-3h2.2z"/><path stroke="#000" stroke-width=".7" d="M11 15.5H9L2.4 4.2l-1.7-3h2.2z" clip-rule="evenodd"/><path fill="#000" d="M44.8 4H48l1.7 8.6 2-8.6h3.2l2 8.6L58.5 4h3l-3 11.8h-3.4l-1.9-7.7-2 7.7h-3.4zm22.5 9.6c1 0 2-.8 2-2.4s-1-2.3-2-2.3-2 .7-2 2.3 1 2.4 2 2.4m0 2.4a4.6 4.6 0 0 1-4.9-4.9c0-3 2.2-4.8 4.9-4.8S72 8.2 72 11.1c0 3-2.1 4.9-4.9 4.9m6.6-.2h2.8V3.3h-2.8zm5.3-7h-1.1V6.4h1v-.3q.1-3.6 4.4-3.5v2.5q-1.5-.2-1.5 1.2v.1h1.6v2.4h-1.6v7H79zm10.5.1c-1 0-2 .8-2 2.3s1 2.4 2 2.4 2-.9 2-2.4-1-2.3-2-2.3m.9-2.6c2.3 0 4.1 1.9 4.1 4.8 0 3-1.8 5-4.1 5q-2.1-.2-2.9-1.5v5.8h-2.8v-14h2.8v1.4q.8-1.4 2.9-1.5m9.9 2.6c-1 0-2 .8-2 2.3s1 2.4 2 2.4q1.8 0 2-2.4-.2-2.3-2-2.3m-.8-2.6q2 0 2.8 1.5V6.4h2.9v9.4h-2.9v-1.3q-.8 1.4-2.9 1.5c-2.2 0-4-2-4-4.9s1.8-4.8 4-4.8m11.9 0q3.6.1 4.4 3.5h-3q-.3-1-1.5-1-1.6 0-1.7 2.3.1 2.4 1.7 2.4 1.2 0 1.5-1h3a4.3 4.3 0 0 1-4.4 3.5c-2.8 0-4.7-1.9-4.7-4.9s2-4.8 4.7-4.8m6-3h2.9v7l2.8-4h3.5l-3.9 4.8 4 4.7H123l-2.8-4v4h-3z"/></svg></div>
+      <span class="tag">Powerful tech products start-to-end</span>
+    </div>
+    <div class="prepared">
+      <span class="chip">Concept screens · not final UI</span><br><br>
+      Prepared for <b>Our Client in East Africa</b> — Phase 1 pilot review<br>
+      Light theme · Scope basis: <b>MoM 16 Jul 2026</b> + SOW v0.1
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1>One network, <em>every charger, every OEM</em> — booked in advance, run from one console.</h1>
+    <p>The same four concept screens in a lighter, brighter direction: airy white surfaces, colourful energy data, and a green charge accent. One screen for each rung of the A / B / C quote, built against your 16 July call.</p>
+    <div class="tags">
+      <i>Pre-booking first</i><i>Consolidated across all OEMs</i><i>M-Pesa · Tigo Pesa · Airtel · card</i><i>Dar es Salaam · 6-station pilot</i>
+    </div>
+  </div>
+
+  <!-- ===== SCREEN 1 — OPTION A ===== -->
+  <div class="screen">
+    <div class="screen-head">
+      <div class="n">1</div><h2>Multi-OEM Fleet Dashboard</h2>
+      <div class="who">Viewed by <b>Operations team</b> · desktop</div>
+      <span class="optbadge">Option A · Core</span>
+    </div>
+    <p class="caption">Your headline requirement — <b>one pane across every OEM</b> — now with the network's rhythm made visual: a utilisation heatmap by station and hour, energy by station, and live per-connector status with <b>remote reset</b>. ABB, Kempower, Siemens, EVBox, Autel and Delta on one screen, not six dashboards.</p>
+    <div class="browser">
+      <div class="tb"><i></i><i></i><i></i><div class="url">ops.chaji.co.tz/fleet</div></div>
+      <div class="app">
+        <aside class="side">
+          <div class="brand"><div class="m">C</div><div><b>Chaji</b><small>Operator</small></div></div>
+          <div class="nav active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Fleet overview</div>
+          <div class="nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Stations</div>
+          <div class="nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h7l-1 8 10-12h-7z"/></svg>Sessions</div>
+          <div class="nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>Faults</div>
+          <div class="nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>Transactions</div>
+          <div class="nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5m0 14h16M8 15l3-4 3 2 4-6"/></svg>Reports</div>
+          <div class="sep"></div>
+          <div class="nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M19.4 15a7 7 0 0 0 .1-3l1.9-1.4-2-3.4-2.2 1a7 7 0 0 0-2.6-1.5L14 2h-4l-.6 2.3A7 7 0 0 0 6.8 5.8l-2.2-1-2 3.4L4.5 9.6a7 7 0 0 0 0 3"/></svg>Pricing</div>
+          <div class="nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>Access &amp; roles</div>
+          <div class="usr"><div class="av"></div><div><b>Dar Control Room</b><br><span style="color:var(--faint)">Operations</span></div></div>
+        </aside>
+        <section class="main">
+          <div class="top">
+            <div><h3>Network operations</h3><p>Thursday 16 July · 14:22 EAT · 6 stations · 9 connectors · live</p></div>
+            <div style="display:flex;gap:8px"><button class="btn ghost">Export</button><button class="btn">Refresh ↻</button></div>
+          </div>
+          <div class="kpis">
+            <div class="kpi t"><div class="lb"><span class="d" style="background:var(--borealis)"></span>Stations online</div><div class="v">5 / 6</div><div class="s warn">S-06 offline</div></div>
+            <div class="kpi g"><div class="lb"><span class="d" style="background:var(--teal-deep)"></span>Connectors free</div><div class="v">4 / 9</div><div class="s">3 charging</div></div>
+            <div class="kpi m"><div class="lb"><span class="d" style="background:var(--midnight)"></span>Live sessions</div><div class="v">3</div><div class="s up">62 kW drawn</div></div>
+            <div class="kpi s"><div class="lb"><span class="d" style="background:var(--fault)"></span>Open faults</div><div class="v">2</div><div class="s warn">1 faulted · 1 offline</div></div>
+            <div class="kpi y"><div class="lb"><span class="d" style="background:var(--moon-deep)"></span>Energy today</div><div class="v">412<span style="font-size:14px"> kWh</span></div><div class="s up">99.1% uptime</div></div>
+          </div>
+          <div class="vizrow">
+            <div class="vcard">
+              <div class="vh"><b>Utilisation by station &amp; hour</b><span>today · % of capacity</span></div>
+              <div class="vb">
+                <div class="hm" id="hm"></div>
+                <div class="hm-legend"><span>Quiet</span><span class="sw" style="background:#E4F5EE"></span><span class="sw" style="background:#A9E4D0"></span><span class="sw" style="background:#5FCBA9"></span><span class="sw" style="background:#0E7C5A"></span><span>Peak</span><span style="margin-left:auto">08:00 → 22:00</span></div>
+              </div>
+            </div>
+            <div class="vcard">
+              <div class="vh"><b>Energy delivered</b><span>kWh · by station</span></div>
+              <div class="vb">
+                <div class="bars">
+                  <div class="bar-col"><div class="bv">96</div><div class="bk" style="height:78%"></div><div class="bl">S-01</div></div>
+                  <div class="bar-col"><div class="bv">120</div><div class="bk" style="height:98%"></div><div class="bl">S-02</div></div>
+                  <div class="bar-col"><div class="bv">44</div><div class="bk" style="height:36%"></div><div class="bl">S-03</div></div>
+                  <div class="bar-col"><div class="bv">58</div><div class="bk" style="height:47%"></div><div class="bl">S-04</div></div>
+                  <div class="bar-col"><div class="bv">71</div><div class="bk" style="height:58%"></div><div class="bl">S-05</div></div>
+                  <div class="bar-col"><div class="bv">23</div><div class="bk" style="height:19%"></div><div class="bl">S-06</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="vcard">
+            <div class="vh"><b>Stations · consolidated across all OEMs</b><span>remote reset where supported</span></div>
+            <table class="mt">
+              <thead><tr><th>Station</th><th>Charger / OEM</th><th>Connector</th><th>Status</th><th>Power</th><th>OCPP</th><th>Last seen</th><th>Remote</th></tr></thead>
+              <tbody>
+                <tr><td><div class="stn-cell"><div class="th">01</div><div><b>Samora Avenue</b><small>CBD · DC Rapid</small></div></div></td><td><div class="oem"><b>ABB</b><small>Terra 54</small></div></td><td class="mono">CCS2 · A</td><td><span class="st chg">Charging</span></td><td class="mono">48 kW</td><td class="mono">1.6J</td><td class="tiny">2s ago</td><td><span class="act">Reset</span></td></tr>
+                <tr><td><div class="stn-cell"><div class="th">02</div><div><b>Mlimani City Mall</b><small>DC Rapid · 2 conn.</small></div></div></td><td><div class="oem"><b>Kempower</b><small>S-Series</small></div></td><td class="mono">CCS2 · A / B</td><td><span class="st chg">Charging</span> <span class="st ava">1 free</span></td><td class="mono">60 kW</td><td class="mono">2.0.1</td><td class="tiny">1s ago</td><td><span class="act">Reset</span></td></tr>
+                <tr><td><div class="stn-cell"><div class="th">03</div><div><b>Morogoro Road</b><small>A7 arterial · DC Rapid</small></div></div></td><td><div class="oem"><b>Siemens</b><small>Sicharge D</small></div></td><td class="mono">CCS2 · A</td><td><span class="st flt">Faulted</span></td><td class="mono">120 kW</td><td class="mono">1.6J</td><td class="tiny">20s ago</td><td><span class="act">Reset ⟳</span></td></tr>
+                <tr><td><div class="stn-cell"><div class="th">04</div><div><b>Msasani Corporate Park</b><small>HQ car park · AC</small></div></div></td><td><div class="oem"><b>EVBox</b><small>Troniq</small></div></td><td class="mono">Type 2 · A / B</td><td><span class="st ava">Available</span></td><td class="mono">22 kW</td><td class="mono">1.6J</td><td class="tiny">4s ago</td><td><span class="act">Reset</span></td></tr>
+                <tr><td><div class="stn-cell"><div class="th">05</div><div><b>Oyster Bay Residences</b><small>Residential · AC</small></div></div></td><td><div class="oem"><b>Autel</b><small>MaxiCharger</small></div></td><td class="mono">Type 2 · A / B</td><td><span class="st chg">Charging</span> <span class="st ava">1 free</span></td><td class="mono">22 kW</td><td class="mono">1.6J</td><td class="tiny">3s ago</td><td><span class="act">Reset</span></td></tr>
+                <tr><td><div class="stn-cell"><div class="th">06</div><div><b>Slipway Hotel</b><small>Hospitality · AC</small></div></div></td><td><div class="oem"><b>Delta</b><small>AC Max</small></div></td><td class="mono">Type 2 · A</td><td><span class="st off">Offline</span></td><td class="mono">7 kW</td><td class="mono">1.6J</td><td class="tiny">10 min ago</td><td><span class="act off">Reset</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SCREEN 2 — OPTION A (mobile) ===== -->
+  <div class="screen">
+    <div class="screen-head">
+      <div class="n">2</div><h2>Pre-Book &amp; Charge</h2>
+      <div class="who">Viewed by <b>Driver</b> · mobile</div>
+      <span class="optbadge">Option A · Core</span>
+    </div>
+    <p class="caption">The biggest shift from the SOW, in a bright iOS-style app: <b>pre-booking is the primary journey</b>. Find a station, reserve a connector, see the price before committing, <b>pay in advance</b>, then validate on arrival with a <b>reference number</b> — no QR. Guest checkout or Google sign-in; no phone-and-OTP wall.</p>
+    <div class="phonewrap">
+      <div class="phone">
+        <div class="scr">
+          <div class="notch"></div>
+          <!-- HERO IMAGE -->
+          <div class="hero-photo">
+            <svg class="scene" viewBox="0 0 340 224" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="skyG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0a1622"/><stop offset=".42" stop-color="#123a45"/><stop offset=".72" stop-color="#1c6360"/><stop offset="1" stop-color="#26706a"/></linearGradient>
+                <linearGradient id="roadG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#123038"/><stop offset=".5" stop-color="#0b1a20"/><stop offset="1" stop-color="#050d11"/></linearGradient>
+                <linearGradient id="bodyG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef3f5"/><stop offset=".4" stop-color="#b9c4c9"/><stop offset=".72" stop-color="#7d8990"/><stop offset="1" stop-color="#3a444a"/></linearGradient>
+                <linearGradient id="glassG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#39525c"/><stop offset=".5" stop-color="#1c2c33"/><stop offset="1" stop-color="#0e1a1f"/></linearGradient>
+                <linearGradient id="poleG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#cfd6d8"/><stop offset=".5" stop-color="#eef2f3"/><stop offset="1" stop-color="#aab3b6"/></linearGradient>
+                <radialGradient id="glowG" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#4dffe0" stop-opacity=".9"/><stop offset="1" stop-color="#4dffe0" stop-opacity="0"/></radialGradient>
+                <radialGradient id="vignG" cx="50%" cy="40%" r="78%"><stop offset="0" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".5"/></radialGradient>
+                <filter id="bl4" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="4"/></filter>
+                <filter id="bl8" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="8"/></filter>
+              </defs>
+              <rect width="340" height="224" fill="url(#skyG)"/>
+              <g filter="url(#bl8)" opacity=".5"><ellipse cx="80" cy="44" rx="60" ry="12" fill="#20505a"/><ellipse cx="232" cy="32" rx="70" ry="11" fill="#1a464f"/><ellipse cx="300" cy="58" rx="50" ry="10" fill="#245a5c"/></g>
+              <rect x="0" y="120" width="340" height="26" fill="#2c6f66" opacity=".5" filter="url(#bl4)"/>
+              <g fill="#0a2027" opacity=".92"><rect x="10" y="96" width="26" height="52" rx="1.5"/><rect x="40" y="80" width="18" height="68" rx="1.5"/><rect x="62" y="104" width="22" height="44" rx="1.5"/><rect x="150" y="88" width="16" height="60" rx="1.5"/><rect x="170" y="106" width="24" height="42" rx="1.5"/><rect x="300" y="90" width="24" height="58" rx="1.5"/><rect x="326" y="108" width="14" height="40" rx="1.5"/></g>
+              <g fill="#ffd489" opacity=".85"><rect x="45" y="86" width="3" height="3"/><rect x="51" y="92" width="3" height="3"/><rect x="45" y="100" width="3" height="3"/><rect x="154" y="94" width="2.5" height="2.5"/><rect x="158" y="102" width="2.5" height="2.5"/><rect x="305" y="98" width="3" height="3"/><rect x="311" y="106" width="3" height="3"/><rect x="305" y="114" width="3" height="3"/></g>
+              <g filter="url(#bl4)"><circle cx="120" cy="112" r="4" fill="#ffce7a" opacity=".5"/><circle cx="205" cy="118" r="3.5" fill="#7fe6d6" opacity=".5"/><circle cx="270" cy="110" r="4" fill="#ffce7a" opacity=".4"/></g>
+              <g fill="#061318"><path d="M26 148 C 24 128 28 110 31 100 C 32 112 31 130 32 148 Z"/><g stroke="#061318" stroke-width="2.6" fill="none" stroke-linecap="round"><path d="M31 100 C 18 93 9 93 3 97"/><path d="M31 100 C 22 87 15 84 9 84"/><path d="M31 100 C 39 88 49 87 56 89"/><path d="M31 100 C 42 92 51 95 57 100"/></g><path d="M312 148 C 311 132 314 118 316 110 C 317 120 316 134 317 148 Z"/><g stroke="#061318" stroke-width="2.4" fill="none" stroke-linecap="round"><path d="M316 110 C 305 104 298 104 293 107"/><path d="M316 110 C 324 104 331 105 336 108"/><path d="M316 110 C 316 102 317 97 319 92"/></g></g>
+              <rect x="0" y="146" width="340" height="78" fill="url(#roadG)"/>
+              <ellipse cx="262" cy="150" rx="70" ry="30" fill="url(#glowG)" opacity=".5"/>
+              <rect x="256" y="150" width="9" height="60" fill="#25c9b0" opacity=".22" filter="url(#bl4)"/>
+              <ellipse cx="150" cy="196" rx="92" ry="16" fill="#000" opacity=".38" filter="url(#bl4)"/>
+              <g opacity=".15" filter="url(#bl4)" transform="translate(0,352) scale(1,-1)"><path d="M56 176 C 58 156 76 148 96 146 L 118 132 C 128 126 144 124 158 126 L 184 129 C 206 132 220 142 230 156 L 236 172 Z" fill="#9fb0b6"/></g>
+              <g><rect x="248" y="70" width="30" height="86" rx="9" fill="url(#poleG)"/><rect x="248" y="70" width="30" height="86" rx="9" fill="none" stroke="#8b9498" stroke-opacity=".6"/><rect x="253" y="78" width="20" height="30" rx="4" fill="#07272a"/><ellipse cx="263" cy="93" rx="24" ry="22" fill="url(#glowG)" opacity=".55"/><path d="M265 82 l-7 15 h6 l-4 12 10 -17 h-6 z" fill="#3ff0cf"/><rect x="252" y="116" width="22" height="4" rx="2" fill="#12d8ac"/><rect x="252" y="123" width="22" height="3" rx="1.5" fill="#0f8f7a" opacity=".8"/><rect x="250" y="150" width="26" height="8" rx="3" fill="#c3cccf"/></g>
+              <path d="M250 132 C 226 158 210 158 194 148" fill="none" stroke="#0c3b36" stroke-width="6" stroke-linecap="round"/>
+              <path d="M250 132 C 226 158 210 158 194 148" fill="none" stroke="#1fbfa6" stroke-width="2" stroke-linecap="round" opacity=".6"/>
+              <rect x="185" y="141" width="13" height="11" rx="3" fill="#0e6b5c"/>
+              <g>
+                <path d="M50 158 C 52 138 70 130 90 128 L 112 114 C 122 108 138 106 152 108 L 178 111 C 200 114 214 124 224 138 L 231 156 C 233 162 229 166 223 166 L 58 166 C 52 166 49 163 50 158 Z" fill="url(#bodyG)"/>
+                <path d="M52 158 C 60 162 120 164 223 162 L 223 166 L 58 166 C 52 166 49 163 52 158 Z" fill="#2c363b" opacity=".8"/>
+                <path d="M108 118 C 118 111 132 109 146 110 L 170 113 C 184 115 194 122 202 132 L 114 132 C 106 132 103 124 108 118 Z" fill="url(#glassG)"/>
+                <path d="M116 120 C 124 115 134 114 143 115 L 141 130 L 118 130 C 112 130 112 124 116 120 Z" fill="#8fb4bd" opacity=".55"/>
+                <path d="M150 115 L 168 118 C 178 120 186 125 192 131 L 150 131 Z" fill="#6f959f" opacity=".45"/>
+                <path d="M112 116 C 124 109 140 108 156 110" fill="none" stroke="#6ff2da" stroke-width="1.6" stroke-linecap="round" opacity=".85"/>
+                <path d="M60 150 C 120 146 180 146 226 150" fill="none" stroke="#f2f6f7" stroke-width="1.4" opacity=".55"/>
+                <ellipse cx="55" cy="147" rx="9" ry="5" fill="#bffff0" opacity=".9" filter="url(#bl4)"/>
+                <rect x="50" y="145" width="9" height="5" rx="2.5" fill="#eafffb"/>
+                <rect x="223" y="140" width="5" height="6" rx="2" fill="#ff5a5a" opacity=".9"/>
+                <circle cx="196" cy="146" r="4" fill="#2affd0" opacity=".5" filter="url(#bl4)"/>
+                <g><circle cx="82" cy="164" r="17" fill="#0a1114"/><circle cx="82" cy="164" r="9" fill="#2b3a40"/><circle cx="82" cy="164" r="3.4" fill="#59707a"/><circle cx="186" cy="164" r="17" fill="#0a1114"/><circle cx="186" cy="164" r="9" fill="#2b3a40"/><circle cx="186" cy="164" r="3.4" fill="#59707a"/></g>
+              </g>
+              <rect width="340" height="224" fill="url(#vignG)"/>
+            </svg>
+            <div class="hp-top">
+              <span class="hp-back">‹</span>
+              <span class="hp-live"><i></i>Available now</span>
+            </div>
+            <div class="hp-meta">
+              <div class="hp-name">Mlimani City Mall</div>
+              <div class="hp-sub">DC Rapid · 60 kW · CCS2 · 1.2 km away</div>
+              <div class="hp-chips"><span class="star">★ 4.8</span><span>212 charges</span><span>Kempower S-Series</span></div>
+            </div>
+          </div>
+          <div class="ph-body">
+            <div class="resv-top">
+              <div><div class="resv-t">Reserve a charge</div><div class="resv-s">Pay in advance · validate on arrival</div></div>
+              <span class="resv-step">Step 3 / 4</span>
+            </div>
+            <div class="stepbar"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+            <div class="sect-t">Connectors now <span>updated 3s ago</span></div>
+            <div class="statusrow">
+              <div class="cc busy"><div class="l">Connector A</div><div class="v">In use</div></div>
+              <div class="cc on"><div class="l">Connector B</div><div class="v">Available</div></div>
+            </div>
+            <div class="sect-t" style="margin-top:16px">Pick an arrival time</div>
+            <div class="slots"><div class="sl">14:30</div><div class="sl on">15:00</div><div class="sl">15:30</div><div class="sl">16:00</div></div>
+            <div class="sect-t" style="margin-top:16px">Charging product</div>
+            <div class="prodpick on"><span class="rd"></span><div><b>Rapid charging</b><small>Per kWh · billed on energy</small></div><span class="pr">TSh 850<small>/kWh</small></span></div>
+            <div class="prodpick"><span class="rd off"></span><div><b>Fixed top-up</b><small>Flat 15 kWh session</small></div><span class="pr">TSh 12,000</span></div>
+            <div class="coupon">
+              <span class="c-ic"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 8.5A1.5 1.5 0 0 1 4.5 7h15A1.5 1.5 0 0 1 21 8.5v2a2 2 0 1 0 0 4v2a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 15.5v-2a2 2 0 1 0 0-4Z" fill="#12B886"/><path d="M14.5 7.5v9" stroke="#f2fdfb" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="2 2.4"/></svg></span>
+              <div class="c-tx"><b>LAUNCH10 applied</b><small>10% off this charging session</small></div>
+              <span class="c-bd">−10%</span>
+            </div>
+            <div class="pricebox">
+              <div class="r"><span>Est. 25 kWh × TSh 850</span><span>TSh 21,250</span></div>
+              <div class="r"><span>Coupon LAUNCH10</span><span class="g">− TSh 2,125</span></div>
+              <div class="r"><span>Pre-authorisation hold</span><span>captured on completion</span></div>
+              <div class="r tot"><span>Pay now</span><span>TSh 19,125</span></div>
+            </div>
+            <div class="sect-t" style="margin-top:16px">Payment method</div>
+            <div class="paygrid">
+              <div class="pm on">
+                <svg class="pic" viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg"><rect width="34" height="34" rx="10" fill="#2E7D32"/><path d="M9 24V12h3.1l2.4 5.2L16.9 12H20v12h-2.7v-6.7l-2 4.3h-1.6l-2-4.3V24Zm14.2 0v-4.1h2.3c2.1 0 3.5-1.2 3.5-3.05S29.6 12 27.5 12h-5v12Zm2.3-6.2v-3.7h1.7c.9 0 1.4.7 1.4 1.85s-.5 1.85-1.4 1.85Z" fill="#fff"/></svg>
+                M-Pesa<span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5"><path d="M5 12l4 4 10-10"/></svg></span>
+              </div>
+              <div class="pm">
+                <svg class="pic" viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg"><rect width="34" height="34" rx="10" fill="#0A3D91"/><path d="M9 13.4V11h9v2.4h-3.1V24h-2.8V13.4Zm10 .3a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Zm.1 3.1h2.8V24h-2.8Z" fill="#fff"/></svg>
+                Tigo Pesa<span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5"><path d="M5 12l4 4 10-10"/></svg></span>
+              </div>
+              <div class="pm">
+                <svg class="pic" viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg"><rect width="34" height="34" rx="10" fill="#E1140A"/><path d="M11.4 24 15 11h4l3.6 13h-2.9l-.7-2.6h-4l-.7 2.6Zm4.2-4.9h2.8L17 14Z" fill="#fff"/></svg>
+                Airtel<span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5"><path d="M5 12l4 4 10-10"/></svg></span>
+              </div>
+              <div class="pm">
+                <svg class="pic" viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg"><rect width="34" height="34" rx="10" fill="#0C2530"/><rect x="7" y="11" width="20" height="13" rx="2.5" fill="none" stroke="#8fd9c8" stroke-width="1.6"/><rect x="7" y="14.4" width="20" height="3.1" fill="#12B886"/><rect x="10" y="20" width="7" height="1.7" rx=".8" fill="#8fd9c8"/></svg>
+                Card<span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5"><path d="M5 12l4 4 10-10"/></svg></span>
+              </div>
+            </div>
+            <div class="refbox"><div class="l">Show at the charger console<b>Type this reference to start</b></div><div class="code">4827</div></div>
+            <div class="ph-cta">Pay &amp; reserve · TSh 19,125 ›</div>
+          </div>
+        </div>
+      </div>
+      <div class="side-notes">
+        <div class="nt"><div class="b" style="background:#FFF0F5;color:var(--sunset)">◷</div><div><h5>Pre-booking first</h5><p>Find → schedule → pay → check out <b>before arrival</b>, exactly as described on 16 July. Reservations were a "later" item in the SOW; here they lead the journey.</p></div></div>
+        <div class="nt"><div class="b" style="background:#E9FBF8;color:var(--teal-deep)">#</div><div><h5>A reference number, not a QR</h5><p>The driver validates on arrival by typing a short code at the console — <b>QR left for a later round</b>, per Lakruwan's note.</p></div></div>
+        <div class="nt"><div class="b" style="background:#EEEDFF;color:var(--midnight-deep)">◐</div><div><h5>No sign-up wall</h5><p><b>Guest checkout or Google sign-in</b> — not the phone-and-OTP requirement from the SOW. Pay via M-Pesa, Tigo Pesa, Airtel Money or card.</p></div></div>
+        <div class="nt"><div class="b" style="background:#FFF7DE;color:var(--moon-deep)">⚑</div><div><h5>Open point, shown honestly</h5><p>Pay-in-advance vs pay-at-station and the refund flow are <b>still open pending your workshops</b> — modelled here as pay-in-advance.</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SCREEN 3 — OPTION B ===== -->
+  <div class="screen">
+    <div class="screen-head">
+      <div class="n">3</div><h2>Pricing &amp; Product Engine</h2>
+      <div class="who">Viewed by <b>Admin / Pricing manager</b> · desktop</div>
+      <span class="optbadge b">Option B · + Pricing</span>
+    </div>
+    <p class="caption">The Option B rung, made tangible. Create <b>time-based, energy-based or fixed</b> products, set <b>time-tiered rates</b> and coupons, override price per station — then publish. Changes flow to app, web, console and charger <b>without an app release</b>, consistent everywhere.</p>
+    <div class="browser">
+      <div class="tb"><i></i><i></i><i></i><div class="url">ops.chaji.co.tz/pricing</div></div>
+      <div class="app">
+        <aside class="side">
+          <div class="brand"><div class="m">C</div><div><b>Chaji</b><small>Operator</small></div></div>
+          <div class="nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Fleet overview</div>
+          <div class="nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Stations</div>
+          <div class="nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h7l-1 8 10-12h-7z"/></svg>Sessions</div>
+          <div class="nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>Faults</div>
+          <div class="nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>Transactions</div>
+          <div class="nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5m0 14h16M8 15l3-4 3 2 4-6"/></svg>Reports</div>
+          <div class="sep"></div>
+          <div class="nav active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M19.4 15a7 7 0 0 0 .1-3l1.9-1.4-2-3.4-2.2 1a7 7 0 0 0-2.6-1.5L14 2h-4l-.6 2.3A7 7 0 0 0 6.8 5.8l-2.2-1-2 3.4L4.5 9.6a7 7 0 0 0 0 3"/></svg>Pricing</div>
+          <div class="nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>Access &amp; roles</div>
+          <div class="usr"><div class="av"></div><div><b>Pricing desk</b><br><span style="color:var(--faint)">Admin</span></div></div>
+        </aside>
+        <section class="main">
+          <div class="top">
+            <div><h3>Products &amp; pricing</h3><p>4 published products · changes go live without an app release</p></div>
+            <div style="display:flex;gap:8px"><button class="btn ghost">Preview in app</button><button class="btn">+ New product</button></div>
+          </div>
+          <div class="split">
+            <div class="panel">
+              <div class="ph"><b>Products</b><span>Applied network-wide</span></div>
+              <div class="prod-list">
+                <div class="r sel"><div class="ico" style="background:#E4F7EF;color:#0B6E52">⚡</div><div><b>Rapid charging</b><small>Energy-based · DC rapid stations</small></div><div class="pr">TSh 850<small>/kWh</small></div></div>
+                <div class="r"><div class="ico" style="background:#E9FBF8;color:var(--teal-deep)">🔌</div><div><b>Standard charging</b><small>Energy-based · AC stations</small></div><div class="pr">TSh 550<small>/kWh</small></div></div>
+                <div class="r"><div class="ico" style="background:#E8EEFF;color:#2A54C4">⏱</div><div><b>Highway boost</b><small>Time-tiered · S-03 120 kW</small></div><div class="pr">Tiered</div></div>
+                <div class="r"><div class="ico" style="background:#FFF7DE;color:var(--moon-deep)">🏨</div><div><b>Hotel overnight</b><small>Fixed price · S-06</small></div><div class="pr">TSh 12,000</div></div>
+              </div>
+            </div>
+            <div class="panel">
+              <div class="ph"><b>Edit · Rapid charging</b><span>Draft</span></div>
+              <div class="pb">
+                <label style="font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700">Pricing model</label>
+                <div class="seg" style="margin-top:6px"><span>Fixed</span><span class="on">Energy-based</span><span>Time-based</span></div>
+                <div class="fld"><label>Base rate</label><div class="in"><b style="color:var(--ink)">TSh 850</b><span class="cur">per kWh · TZS</span></div></div>
+                <div class="fld"><label>Time-tiered rates <span style="text-transform:none;letter-spacing:0;color:var(--midnight-deep)">(within a session)</span></label>
+                  <div class="tier"><span class="rng">First 30 min</span>Introductory rate<span class="val">TSh 780/kWh</span></div>
+                  <div class="tier"><span class="rng">After 30 min</span>Standard rate<span class="val">TSh 850/kWh</span></div>
+                </div>
+                <div class="fld"><label>Per-station override</label><div class="in"><span>S-03 Morogoro Road · launch promo</span><b style="color:var(--teal-deep)">− 12%</b></div></div>
+                <div class="preview">
+                  <div class="r"><span>25 kWh session · base</span><span>TSh 21,250</span></div>
+                  <div class="r"><span>Coupon LAUNCH10</span><span class="g">− TSh 2,125</span></div>
+                  <div class="r tot"><span>Customer sees</span><span>TSh 19,125</span></div>
+                </div>
+                <div class="pub">● Publishing updates app · web · console · charger display — no release needed</div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SCREEN 4 — OPTION C ===== -->
+  <div class="screen">
+    <div class="screen-head">
+      <div class="n">4</div><h2>OCPP Integration Health &amp; Settlement</h2>
+      <div class="who">Viewed by <b>Technical operations</b> · desktop</div>
+      <span class="optbadge c">Option C · Full stack</span>
+    </div>
+    <p class="caption">The Option C rung — the layer Qualiteq owns under A and B, built our side. Left: the <b>OCPP middleware</b> normalising six OEMs and two protocol versions into one stream. Right: <b>payment settlement &amp; reconciliation</b> across M-Pesa, Tigo Pesa, Airtel and card, with matched-vs-pending and refunds.</p>
+    <div class="browser">
+      <div class="tb"><i></i><i></i><i></i><div class="url">ops.chaji.co.tz/integrations</div></div>
+      <div class="app">
+        <aside class="side">
+          <div class="brand"><div class="m">C</div><div><b>Chaji</b><small>Operator</small></div></div>
+          <div class="nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Fleet overview</div>
+          <div class="nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Stations</div>
+          <div class="nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h7l-1 8 10-12h-7z"/></svg>Sessions</div>
+          <div class="nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>Transactions</div>
+          <div class="nav active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16M8 3v18"/></svg>Integrations</div>
+          <div class="nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5m0 14h16M8 15l3-4 3 2 4-6"/></svg>Reports</div>
+          <div class="sep"></div>
+          <div class="nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M19.4 15a7 7 0 0 0 .1-3l1.9-1.4-2-3.4-2.2 1a7 7 0 0 0-2.6-1.5L14 2h-4l-.6 2.3A7 7 0 0 0 6.8 5.8l-2.2-1-2 3.4L4.5 9.6a7 7 0 0 0 0 3"/></svg>Pricing</div>
+          <div class="usr"><div class="av"></div><div><b>Platform ops</b><br><span style="color:var(--faint)">Technical</span></div></div>
+        </aside>
+        <section class="main">
+          <div class="top">
+            <div><h3>Integrations &amp; settlement</h3><p>OCPP middleware · payment reconciliation · 16 July, 14:22 EAT</p></div>
+            <div style="display:flex;gap:8px"><button class="btn ghost">Export ledger</button><button class="btn">Run reconciliation</button></div>
+          </div>
+          <div class="kpis four">
+            <div class="kpi t"><div class="lb"><span class="d" style="background:var(--borealis)"></span>OCPP adapters</div><div class="v">5 / 6</div><div class="s warn">Delta offline</div></div>
+            <div class="kpi m"><div class="lb"><span class="d" style="background:var(--midnight)"></span>Chargers connected</div><div class="v">7 / 9</div><div class="s">149 msg/min</div></div>
+            <div class="kpi y"><div class="lb"><span class="d" style="background:var(--moon-deep)"></span>Settled today</div><div class="v" style="font-size:22px">TSh 3.72M</div><div class="s">65 transactions</div></div>
+            <div class="kpi g"><div class="lb"><span class="d" style="background:var(--teal-deep)"></span>Reconciled</div><div class="v">96.9%</div><div class="s up">63 of 65 matched</div></div>
+          </div>
+          <div class="split">
+            <div class="panel">
+              <div class="ph"><b>OCPP adapter health</b><span>6 OEMs · 1.6J &amp; 2.0.1</span></div>
+              <table class="mt">
+                <thead><tr><th>OEM adapter</th><th>OCPP</th><th>Chargers</th><th>Status</th><th>Msg/min</th></tr></thead>
+                <tbody>
+                  <tr><td class="oem"><b>ABB</b><small>Terra 54</small></td><td class="mono">1.6J</td><td class="mono">1</td><td><span class="st ava">Connected</span></td><td class="mono">42</td></tr>
+                  <tr><td class="oem"><b>Kempower</b><small>S-Series</small></td><td class="mono">2.0.1</td><td class="mono">2</td><td><span class="st ava">Connected</span></td><td class="mono">55</td></tr>
+                  <tr><td class="oem"><b>Siemens</b><small>Sicharge D</small></td><td class="mono">1.6J</td><td class="mono">1</td><td><span class="st flt">Degraded</span></td><td class="mono">8</td></tr>
+                  <tr><td class="oem"><b>EVBox</b><small>Troniq</small></td><td class="mono">1.6J</td><td class="mono">2</td><td><span class="st ava">Connected</span></td><td class="mono">20</td></tr>
+                  <tr><td class="oem"><b>Autel</b><small>MaxiCharger</small></td><td class="mono">1.6J</td><td class="mono">2</td><td><span class="st ava">Connected</span></td><td class="mono">24</td></tr>
+                  <tr><td class="oem"><b>Delta</b><small>AC Max</small></td><td class="mono">1.6J</td><td class="mono">1</td><td><span class="st off">Offline</span></td><td class="mono">0</td></tr>
+                </tbody>
+              </table>
+              <div style="padding:12px 17px;border-top:1px solid var(--line);font-size:11.5px;color:var(--muted)">Last error · <b class="bad">Siemens ConnectorLockFailure</b> 14:02 · <b class="bad">Delta heartbeat timeout</b> 14:12</div>
+            </div>
+            <div class="panel">
+              <div class="ph"><b>Settlement &amp; reconciliation</b><span>Today · TZS</span></div>
+              <table class="mt">
+                <thead><tr><th>Channel</th><th>Txns</th><th>Value</th><th>Settled</th><th>Status</th></tr></thead>
+                <tbody>
+                  <tr><td class="dt">M-Pesa <small>Vodacom</small></td><td class="mono">38</td><td class="mono">2,140,000</td><td class="mono">34</td><td><span class="ok">✓ matched</span></td></tr>
+                  <tr><td class="dt">Tigo Pesa</td><td class="mono">11</td><td class="mono">590,000</td><td class="mono">10</td><td><span class="tiny">1 pending</span></td></tr>
+                  <tr><td class="dt">Airtel Money</td><td class="mono">7</td><td class="mono">315,000</td><td class="mono">7</td><td><span class="ok">✓ matched</span></td></tr>
+                  <tr><td class="dt">Card <small>Worldpay · Visa/MC</small></td><td class="mono">9</td><td class="mono">680,000</td><td class="mono">8</td><td><span class="bad">1 refund</span></td></tr>
+                </tbody>
+              </table>
+              <div class="pb" style="border-top:1px solid var(--line)">
+                <div class="preview" style="margin-top:2px">
+                  <div class="r"><span>Gross captured today</span><span>TSh 3,725,000</span></div>
+                  <div class="r"><span>Refund via aggregator API</span><span class="g">− TSh 68,000</span></div>
+                  <div class="r"><span>Pending settlement (2)</span><span>TSh 105,000</span></div>
+                  <div class="r tot"><span>Net reconciled</span><span>TSh 3,552,000</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="foot">
+    <div class="pw"><span class="pw-label">Powered by</span><div class="wplogo"><svg xmlns="http://www.w3.org/2000/svg" width="145" height="39" fill="none" viewBox="0 0 145 39"><path fill="#fa357b" d="m111.4 27.4.2-.2v-.3l-.1.3zq-.2.2 0 .3h-.2v.1l-.2.2v.2l-.2.3-.3.2q0 .3-.2.4l-.2.2h.2l.2-.2.3-.4h.2v-.1h-.1v-.2h.1l.1-.2V28h.2l.2-.2zm-1.7 2 .2-.1.2-.2h-.2zm-.5-.2q.1-.3.2 0l-.5.3v-.1l.1-.1zm-3.8 4.3.2-.1.5-.4-.4.3-.4.2-.1.1v.1zm0-.7h-.2v.2h.1zm-.8.4h.3l.1-.3-.2.2zm-1.2.5-.1-.1h-.2v.1zM113 24v1.3a9 9 0 0 1-.9 2.7l-.1.2-.1.2-.1.2-.2.3-.2.3q0 .3-.3.5l-.3.5-.8.8-.3.3-1 .8-1.5 1.3-.1.1-.4.2-.2.3-.2.1h-.3l-.2.1-.2.2-.7.4h-.3l-.2.1-.2.1q-.3 0-.3.3l-.1.1h-.1v-.1l-.1-.2h-.4l-.2-.2-.3-.2v-.1l-.1-.1-.2-.3-.2-.2-.2-.3v-.8l.1-1 .2-.7V31l.1-.2.1-.2v.3l-.1.2v.1h.2v.5l-.1.2-.1.2v1l.2.2h.9l.1-.1a28 28 0 0 1 .9-5.6V27l.3-1.2v-.2l.1-.4.3-.2h.8l.2.2h.1l.1.2.1.2v1l-.1.3-.2.7v.3l-.2.2-.2.2v.6h-.2v.4l-.2.6v.2l-.1.2-.1.4-.1.6v.1l-.1.1-.2.3-.1.4-.1.4q0 .1 0 0l3-1.9 1.1-.9 1.2-1.2 1.1-1.5.8-1.5.4-1.6v-1.4l-.3-.3-.3-.3-.3-.1-.3-.1h-1.5a9 9 0 0 0-3.7 1.6l-.4.2-.4.2q-.4.3-.8 0l-.1-.2h-.1V23l.7-.6 1.4-.8 2.7-1h1.9l.3.2.3.2.7.3.2.1.1.4.2.3.1.3.2.2.1.5v.4zm4.7-3v.5l-.2.3-.2.2-.3.4v.2l-.2.2-.1.1-.1.1-.1.2q0 .2-.2.2 0 .3-.2.2h-.1l-.3-.4v-.5l.8-2.4h.4-.1.3l.2.1v.1h.1v.2h.1zm-3.3 8.3V29l-.2.1v.2zm-.2.5v-.1zm0-.2.1-.1v-.2h-.1l-.2-.1v.1l-.2 1.5v.1h.1v-.5l.1-.2.1-.1V30l-.1-.1v-.2l.1-.2zM114 31v-.2zv1.2-.1l-.2-.2v-.3l.1 1.2q.2 0 .1-.1v-.4l.1-.1zm-.4 0v.2h.1zm1.9-6.7.3.2.4.5v.6l-.3.4-.2.8-.5 1.4v.3l-.1.1v.4l-.2.1h.1v.2l-.1.2-.2.5v.1l.1.2v.3l-.1.2V32h-.2v.1h.2v.6h-.1v1l-.5-.1-.3-.4-.1-.4-.2-.5v-2.5l1.2-5.4zm7.3 6.9V31l-.1-.1v.1l-.2.5v.3l.2-.3zm-.1 1h-.3v.1h.3zm-.4.5.1-.1h.1l-.2-.1h-.1v.3l-.2.3v.3l-.2.2h.3l.2-.2zm-1 1.5-.2.2h.2zm.7 0V34l.1-.3-.3.1-.1.1-.1.3-.1.2v.1l-.1.1-.1.3v.3h-.2l-.1.3v.3h.3l.1-.3.1-.2v-.4h.2v-.3q.3-.2 0-.3h.2m-1.1.8-.1.2v.2-.2zm-.2.6-.3.1zm-.4.5h.3zm0 0v.3h.1l.1-.1zm2-10.4.2-.2v-.3h-.1l-.9 1.2L120 29l-.2.5.1-.1.3-.4.2-.4zm-1 10.2-.2-.1h-.1l-.2.4-.2.2-.3.4-.2.2-.2.3-.3.4-.3.3h-.1l-.1.1.6-.2.2-.2.1-.2h.2l.1-.1.2-.2.2-.4v-.4h.4v-.2zm-2.6-9.8q-.3 0-.3.4zm-.2 12 .7-.3.6-.5.3-.4v-.2h.2v-.4l-.2.2-.2.3-.2.2v.1l-.2.2-.3.2q-.4.5-1 .5h-.1l-.1.1zm-.1-11.4h-.2l-.1.2v.2l-.1.1zm-.8 2.5.1-.1.1-.1v-.2l-.2.2zm-.4 1.5.3-.9-.2.1v.1l-.1.2zm-.2-1.3v.1zl.8-2v-.1l-.5 1zm0 1.8.1-.2v-.3.2zm7.5-5.4v1.5l-.1 1-.2 1v.5l-.1.3v.3l-.2.1-.1.2h.2l-.1.3-.1.2v.1l-.1.1.1.2v.1l-.2.3v.2l-.1.1h-.1v.1h.2l-.2.2-.1.2h.1l.1-.1v.1l-.2.1v.4q-.2 0-.2.2h.2l-.2.2h-.1l-.1.2v.3h-.3l.3.3-.3.4-.2.5h.2l-.2.2q0 .2-.2.3l-.1.1-.1.1v.1l-.1.4h-.2v.4l-.2.2-.2.2v.1h-.1v.1l-.4.5-.6.5h-.2l-.2.1-.1.1h-1.8l-.2-.1-1-.6q-.6-.4-.7-1V37l-.2-.2.6.6.4.4.6.4h.1l1.2-.5 1-1 .7-.9 1-2 .5-1.6.2-.8.6-3.2V26l-.4.5-.2.1v.2l-.1.1v.2l-.2.1-.1.2v.1h-.1v.1l-.3.4-.7 1.1-.2.3-.6 1.1-.5 1-.2.3-.2.4-.7.4h-.1l-.1.2h-.1l-.1.1h-.4l-.4-.3h-.2l-.3-.5-.1-.4v-.3l.4-2 .4-.9.3-1 .3-.4.1-.2.2-.3V26l.5-.5v-.3l.2-.2.1-.2.2-.2.4-.5.6-.5.2-.1h.3q0-.2.1 0h.4l.3.2.3.2.2.2.3.4.2.2v.3l-.1.1h-.2V25l-.2-.3-.1-.1h-.1l-.4.5q-.3 0-.5.4l-1.6 2.2v.1l-1.2 2.7-.2.3v.2l-.1.3v.2l-.1.1v.4h.4v-.1l1.4-2.2q0-.2.3-.5 0-.3.3-.5l.3-.4.2-.4 2.6-3.3h.2l.4.2.3.2.2.2.2.5zm5.1-6.5v.3q0 .3-.2.4l-.1.2-.2.2-.1.2-.1.2-.2.2v.1l-.2.1v.2l-.2.2-.2.2h-.2l-.3-.4V21l.9-2.4h.5l.3.1v.3h.2l.1.2zm-3.2 8.2v-.4l-.2.1v.2zm-.2.5V28h-.1m0-.2v-.3l-.2-.1v.1l-.3 1.5h.1l.1-.2v-.4l.2-.1-.1-.1v-.5zm-.2 1.5v-.2h-.1zl-.1.5v.6-.1l-.1-.2V30l-.1-.1.2 1.2.1-.1v-.8l.1-.2zm-.4 0v.2zm1.8-6.7.3.2.3.3.1.2v.6l-.2.4-.3.8-.5 1.4v.4q-.2.2-.1.3v.1l-.1.1v.4l-.2.5v.9l-.1.2v.8h-.2l.1.1h.1v.8l-.1.2.1.5v.1l-.5-.1-.3-.4-.2-.5v-.4l-.1-2V28l.7-3.4.1-.7.3-1.2.1-.1z"/><path fill="#fa357b" d="M130.8 23.6v-.5l.1-.3v-.3l-.1.4-.1.6zm-.7 3.9.1-.2q-.1 0 0 .2m-.2-3v-.2h.2v.2zm.7-.9v.3l-.2.4v.3l-.1.1v.2l-.2.6v1.4-.7l.2-.5v-.5l.2-.2v-.8q.2 0 .1-.3zm-.8 4.9-.1.1v.5h.1zm-.2 1.1V29zm.2-10.2h-.2l-.2.2h.3zm-.5 11.5v.2h.1zm0 .3v-.5.1-.2l-.1-.1zm.5-5v.2zV26h.2l-.1-.2V25v.4h.1l.2-.6h-.2l.1-.1.2-.4V24h-.2l.2-.4q.3-.2.2-.4h-.1v.1l.2-1v.2l.2-.3h-.2l.1-1V21h-.1l-.1.4-.6 2.5-.1.4v.4l-.2.5-.4 5V30v.3h.2V30l-.1-.4.3-.3h-.2v-.7h-.1l.1-.1h.1v-.3l.1-.3h-.1l.1-.1v-.3l-.2-.2h.1l.1.1v-.1l.1-.2.1-.7h-.1zm.5-6.6h-.2l-.5.2-.2.1h-.2l-1 .3-.1.1-.7.3h-.2v.2h.2l.2-.2h.3l.1-.1.4-.1.4-.2.4-.1q.3 0 .5-.2l.3-.1.4-.1.1-.1zm-3.3 1-.2.1v.1h.2zm2.2-.9-.4.1-.2.1h-.2l-2.2 1-.4.1-.3.2v.2l.2-.2.4-.2 1.5-.6 1.6-.6zm.5.7h-.3l-.2.1-.2.1-.3.1q-.3 0-.5.2l-.5.1-.2.1h-.3l-2.2.8-.1-.1q0-.5.3-.6l.6-.4.9-.4 1.2-.5 1.4-.5 1-.4.4-.1.1-.2.6-2 .3-1h.7l.4.1.2.2v.1l.2.1v.9h-.1l-.4 1 .1.2.9-.2h1.4l.7.3.1.2v.7l-.3.2-.7.1h-1.2l-1.2.2-.4.1v.6l-.2.4v.3l-.1.2-.1.1v.3l-.2.2v.6l-.1.2v.1l-.3.4v.6l-.2.1v.1h.2q-.2 0-.3.2v.3l-.1.2h.1v.2h-.2l.1.2h-.1l-.1.1v.1h.2l-.2.1v.9h-.2v.1l.1.1v.3q-.2 0 0 0v.7h-.2v.2h-.1V30h-.1l-.1.2V32l.2.2h.1-.6V32l-.1-.2h-.2v-.2l-.1-.2-.1-.2-.2-1.1v-2l.5-3.2.2-1v-.3l.1-.3.1-.5.4-1.5v-.2l.1-.7v-.1z"/><path fill="#fa357b" d="M135.1 27v-.2zm-1.8-1.5v-.1zm3.6-1.3.3-.6-.1.1-.2.1.4-.4.2-.4h-.2l-.1-.1h-.1l-.1-.1h-.2l-.3-.2-.4-.2q-.3 0-.3.2l-.6.9-.2.2v.1l-.2.2v.2l-.2.2-.1.3-.1.2v.1l-.2.4-.2.4-.2.5-.4 1.6v.2l-.2.1v1.3l.1.1a28 28 0 0 1 3-4.7l-.2.2-.3.5v.1h-.1v.2h-.1l-.2.3-.1.2v.1l-.2.1v.1h.2l.1-.3.1-.2h.1V26l.1-.1.1-.1.1-.3.2-.2.2-.3v-.2h.1l.1-.2zl.2-.2zm-3.6 2.2-.1.2zm-.4 1.4v-.2l.1-.1zm-.2-.9v-.1h.1v-.2l.1-.2.1-.2.2-1-.1.2v.1l-.2.2v.4l-.1.1v.2l-.1.2zm0 .1v.1l-.1.1v.1h.2zm-.2.7v-.2l.1-.2-.1.1zv.2zm0 .7q-.2 0 0-.1V28q-.3 0-.1.3zm5.4.6.2.2.1.1h.2v.2h-.8v-.1l-.2-.2h-.2l-.4-.7-.2-.9.1-.8.6-2.2.1-.4-.2.2-.5.7-.4.6-.2.2-.1.3-.2.2v.2h-.1l-.5.8v.4l-.4.5-.3.5-.1.2-.1.2-.1.2v.2l-.2.1-.2.4a.4.4 0 0 1-.6.1l-.2-.1v-.2h-.1l-.2-.2-.3-.4-.2-1.3.4-2 .7-2 1.3-2.4q0-.3.3-.4l.6.2 2.2 1.4h.1q0 .2 0 0l.6-.2.1.1h.2v.1h.2l.2.2.2.2v.6l-.3.5v.2l-.2.1-.5 1.4v.2l-.2.5v.4q-.2.1-.2.3zm4.1-6.4v-.2zm-.4.7.3-.2v-.4l-.1.3zm.2 0-.1.1v.2zm-.1 1v-.1h-.2v.3-.1zm-.3.4.2-.2h-.2zm-.2-1.8v-.3l.1-.1v-.4.2zm.2.9.2-.8h-.1v.3l-.1.2h-.2v-.1l-.1-.1v.1l-.1.2v.2h.1l.1-.1zm-.3.7v-.2l.1-.1h-.1l-.1.1v-.4l-.2.1v.1l-.1.2h.1v.1h-.2l.1.2q.3 0 .3-.2zm-.4-1.6-.1.4v.2h-.1zm-.2.7-.3 1 .1-.5zm-.2 1.3v.3-.6zm4-8 .1.2v.7l-.3.4v.1l-.1.2-.2.1v.1l-.2.3-.1.3v.3q-.3 0-.3.2v.4l-.2.2-.2.6v.1l-.2.2v.3l-.2.3v.4l-.1.2-.1.2v.3l-.1.1v.3l-.1.2v.2l-.1.1-.1.1v.5l-.1.2v.4h-.2l-.2.1v.1h.2v.4l-.2.1h.2l-.1.4v2.6l.1 1v.2l.2.3v.2h-.3l-.4-.3-.3-.4-.1-.1v-.2h-.1v-.2h-.1V29l-.3-2.1V25h.1v2.7-.6h.1v.4l.1.1v.3l.1.7h-.1l.2.2h-.1v.3h.1v.1h.1v-.4l-.1-.3v-.4l-.1-.8v-1h.2v-.1q-.2-.1-.1-.3v.1l.1.2V26l.1-.2h-.2v-.1h.2v-.2h.2l-.1-.1h-.4v.9l-.2.5v.1l.1.1v.1h-.1v-1.2l.2-.8v.2h.1V25h.3l-.1-.3v.2h-.2q-.2 0-.1-.2l.2-.9h.1v-.9l.2-.5.2-.6v-.1.3l.1-.1v-.4l.1-.1V21l.1-.2v-.2l.2-.2v-.6l-.1.2-.2.6-.2.6v.1l-.1.2-.1.2v.3l-.1.1v.3l-.1.2V22l1.6-4.6q0-.4.3-.8l.1-.2h.2l.2-.1h.2l.1.1h.2l.3.2q.3 0 .3.2"/><path fill="#000" d="m29.5 15.5 8.2-14.3H40l-8.2 14.3z"/><path stroke="#000" stroke-width=".7" d="m29.5 15.5 8.2-14.3H40l-8.2 14.3h-2.2Z" clip-rule="evenodd"/><path fill="#000" d="m31.6 15.5-1 2h-2.2l1-2z"/><path stroke="#000" stroke-width=".7" d="m31.6 15.5-1 2h-2.2l1-2z" clip-rule="evenodd"/><path fill="#000" d="M29.5 15.5h-2.2l-7-12.3 1.2-1.7z"/><path stroke="#000" stroke-width=".7" d="M29.5 15.5h-2.2l-7-12.3 1.2-1.7z" clip-rule="evenodd"/><path fill="#000" d="M19.3 15.5h10.2l-1 2H12.1l-1.1-2h8.1"/><path stroke="#000" stroke-width=".7" d="M19.3 15.5h10.2l-1 2H12.1l-1.1-2h8.1Z" clip-rule="evenodd"/><path fill="#000" d="m21.4 1.2-1 2-1.2-2z"/><path stroke="#000" stroke-width=".7" d="m21.4 1.2-1 2-1.2-2z" clip-rule="evenodd"/><path fill="#000" d="m19.1 1.5 1.3 1.7-7.1 12.3H11z"/><path stroke="#000" stroke-width=".7" d="m19.1 1.5 1.3 1.7-7.1 12.3H11z" clip-rule="evenodd"/><path fill="#000" d="m11 15.5 1 2h-2l-1.2-2z"/><path stroke="#000" stroke-width=".7" d="m11 15.5 1 2h-2l-1.2-2z" clip-rule="evenodd"/><path fill="#000" d="M11 15.5H9L2.4 4.2l-1.7-3h2.2z"/><path stroke="#000" stroke-width=".7" d="M11 15.5H9L2.4 4.2l-1.7-3h2.2z" clip-rule="evenodd"/><path fill="#000" d="M44.8 4H48l1.7 8.6 2-8.6h3.2l2 8.6L58.5 4h3l-3 11.8h-3.4l-1.9-7.7-2 7.7h-3.4zm22.5 9.6c1 0 2-.8 2-2.4s-1-2.3-2-2.3-2 .7-2 2.3 1 2.4 2 2.4m0 2.4a4.6 4.6 0 0 1-4.9-4.9c0-3 2.2-4.8 4.9-4.8S72 8.2 72 11.1c0 3-2.1 4.9-4.9 4.9m6.6-.2h2.8V3.3h-2.8zm5.3-7h-1.1V6.4h1v-.3q.1-3.6 4.4-3.5v2.5q-1.5-.2-1.5 1.2v.1h1.6v2.4h-1.6v7H79zm10.5.1c-1 0-2 .8-2 2.3s1 2.4 2 2.4 2-.9 2-2.4-1-2.3-2-2.3m.9-2.6c2.3 0 4.1 1.9 4.1 4.8 0 3-1.8 5-4.1 5q-2.1-.2-2.9-1.5v5.8h-2.8v-14h2.8v1.4q.8-1.4 2.9-1.5m9.9 2.6c-1 0-2 .8-2 2.3s1 2.4 2 2.4q1.8 0 2-2.4-.2-2.3-2-2.3m-.8-2.6q2 0 2.8 1.5V6.4h2.9v9.4h-2.9v-1.3q-.8 1.4-2.9 1.5c-2.2 0-4-2-4-4.9s1.8-4.8 4-4.8m11.9 0q3.6.1 4.4 3.5h-3q-.3-1-1.5-1-1.6 0-1.7 2.3.1 2.4 1.7 2.4 1.2 0 1.5-1h3a4.3 4.3 0 0 1-4.4 3.5c-2.8 0-4.7-1.9-4.7-4.9s2-4.8 4.7-4.8m6-3h2.9v7l2.8-4h3.5l-3.9 4.8 4 4.7H123l-2.8-4v4h-3z"/></svg></div></div>
+    <div class="dis">Concept screens for discussion — sample data, not final UI. "Chaji" is a placeholder product name. Light-theme variant. Scope basis: MoM (16 Jul 2026), reconciled with SOW v0.1 (23 Jun 2026). Pre-booking-first direction; payment moment and refund flow remain open pending client workshops. Screens map to quote Options A / B / C.</div>
+  </div>
+
+</div>
+<script>
+// build utilisation heatmap (6 stations x 8 time-buckets), single-hue sequential (midnight)
+(function(){
+  var hm=document.getElementById('hm'); if(!hm) return;
+  var hours=['08','10','12','14','16','18','20','22'];
+  var stations=[['S-01',[35,55,80,70,60,85,75,40]],['S-02',[45,70,95,88,72,90,82,55]],
+                ['S-03',[20,35,50,40,30,55,45,25]],['S-04',[30,60,75,55,45,35,20,10]],
+                ['S-05',[15,25,40,50,55,80,88,60]],['S-06',[8,12,18,22,20,30,28,15]]];
+  function shade(v){ // 0..100 -> pale mint to deep charge-green
+    if(v<25) return '#E4F5EE'; if(v<45) return '#B4E8D6'; if(v<65) return '#6FD0AF';
+    if(v<80) return '#2CA982'; return '#0E7C5A';
+  }
+  var html='<div></div>'; // top-left blank
+  hours.forEach(function(h){ html+='<div class="hmh">'+h+'</div>'; });
+  stations.forEach(function(s){
+    html+='<div class="hml">'+s[0]+'</div>';
+    s[1].forEach(function(v){ html+='<div class="cell" style="background:'+shade(v)+'"></div>'; });
+  });
+  hm.innerHTML=html;
+})();
+</script>
+</body>
+</html>
